@@ -74,7 +74,7 @@ switch($resultado)
         $estrategia = R_estr;
         break;
     case("Quinestésico"):
-        $estrategia = R_estr;
+        $estrategia = K_estr;
         break;
 }
 
