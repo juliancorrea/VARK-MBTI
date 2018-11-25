@@ -258,68 +258,68 @@ $s_desarrollo = "";
 switch($resultado)
 {
     case("ISFJ"):
-        $p_potenciales = "ISFJ_pp";
-        $s_desarrollo = "ISFJ_sd";
+        $p_potenciales = ISFJ_pp;
+        $s_desarrollo = ISFJ_sd;
         break;
     case("ISFP"):
-        $p_potenciales = "ISFP_pp";
-        $s_desarrollo = "ISFP_sd";
+        $p_potenciales = ISFP_pp;
+        $s_desarrollo = ISFP_sd;
         break;
     case("ISTJ"):
-        $p_potenciales = "ISTJ_pp";
-        $s_desarrollo = "ISTJ_sd";
+        $p_potenciales = ISTJ_pp;
+        $s_desarrollo = ISTJ_sd;
         break;
     case("ISTP"):
-        $p_potenciales = "ISTP_pp";
-        $s_desarrollo = "ISTP_sd";
+        $p_potenciales = ISTP_pp;
+        $s_desarrollo = ISTP_sd;
         break;
     case("INFJ"):
-        $p_potenciales = "INFJ_pp";
-        $s_desarrollo = "INFJ_sd";
+        $p_potenciales = INFJ_pp;
+        $s_desarrollo = INFJ_sd;
         break;
     case("INFP"):
-        $p_potenciales = "INFP_pp";
-        $s_desarrollo = "INFP_sd";
+        $p_potenciales = INFP_pp;
+        $s_desarrollo = INFP_sd;
         break;
     case("INTJ"):
         $p_potenciales = INTJ_pp;
         $s_desarrollo = INTJ_sd;
         break;
     case("INTP"):
-        $p_potenciales = "INTP_pp";
-        $s_desarrollo = "INTP_sd";
+        $p_potenciales = INTP_pp;
+        $s_desarrollo = INTP_sd;
         break;
     case("ESFJ"):
-        $p_potenciales = "ESFJ_pp";
-        $s_desarrollo = "ESFJ_sd";
+        $p_potenciales = ESFJ_pp;
+        $s_desarrollo = ESFJ_sd;
         break;
     case("ESFP"):
-        $p_potenciales = "ESFP_pp";
-        $s_desarrollo = "ESFP_sd";
+        $p_potenciales = ESFP_pp;
+        $s_desarrollo = ESFP_sd;
         break;
     case("ESTJ"):
-        $p_potenciales = "ESTJ_pp";
-        $s_desarrollo = "ESTJ_sd";
+        $p_potenciales = ESTJ_pp;
+        $s_desarrollo = ESTJ_sd;
         break;
     case("ESTP"):
-        $p_potenciales = "ESTP_pp";
-        $s_desarrollo = "ESTP_sd";
+        $p_potenciales = ESTP_pp;
+        $s_desarrollo = ESTP_sd;
         break;
     case("ESFJ"):
-        $p_potenciales = "ESFJ_pp";
-        $s_desarrollo = "ESFJ_sd";
+        $p_potenciales = ESFJ_pp;
+        $s_desarrollo = ESFJ_sd;
         break;
     case("ENFP"):
-        $p_potenciales = "ENFP_pp";
-        $s_desarrollo = "ENFP_sd";
+        $p_potenciales = ENFP_pp;
+        $s_desarrollo = ENFP_sd;
         break;
     case("ENTJ"):
-        $p_potenciales = "ENTJ_pp";
-        $s_desarrollo = "ENTJ_sd";
+        $p_potenciales = ENTJ_pp;
+        $s_desarrollo = ENTJ_sd;
         break;
     case("ENTP"):
-        $p_potenciales = "ENTP_pp";
-        $s_desarrollo = "ENTP_sd";
+        $p_potenciales = ENTP_pp;
+        $s_desarrollo = ENTP_sd;
         break;
     
 }
