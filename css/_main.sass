@@ -1,0 +1,232 @@
+$primario: #aa0000
+
+main 
+    .content
+        margin: 30px 0
+        .texto
+            text-align: justify
+            .titulo
+                padding: 10px 0
+                font-size: 20px
+                font-weight: 500
+                color: #aa0000
+                text-align: center
+                text-transform: uppercase
+                border-bottom: 1px solid #ccc
+            .parrafo
+                margin: 10px 10px
+                padding: 10px
+                font-size: 16px
+                font-family: 'Open-Sans', 'Arial', sans-serif
+                color: #050517
+
+    .generales
+        margin: 40px 0
+        padding: 10px
+        text-align: center
+        font-family: 'Open-Sans', 'Arial', sans-serif
+        color: #333   
+        .facultad
+            font-weight: 100
+            font-size: 24px
+        .direccion
+            font-weight: 100
+            font-size: 16px
+    .contacto
+        .form_contacto
+            margin: 20px auto
+            padding: 20px
+            input 
+                display: block
+                &[type='text'],
+                &[type='email']
+                    width: 100%
+                    padding: 20px   
+                    margin-bottom: 20px
+                    border-radius: 3px
+                    border: 1px solid #0056b3
+                    font-family: Arial
+                    font-size: 16px
+                    &:focus
+                        border: 2px solid #4fb560
+            textarea
+                min-height: 120px
+                max-height: 300px
+                min-width: 100%
+                max-width: 100%
+                width: 100%
+                padding: 20px   
+                margin-bottom: 20px
+                border-radius: 3px
+                border: 1px solid #226fc1
+                font-family: Arial
+                font-size: 16px
+                &:focus
+                    border: 2px solid #4fb560
+            &[type='submit']
+                width: 200px
+                margin: 0 auto
+                background: none
+                border: 1px solid #4fb560
+                color: #4fb560
+                padding: 10px
+                cursor: pointer
+                font-size: 16px
+                border-radius: 3px
+                &:hover
+                    background: #4fb560
+                    color: #fff
+        .contactos
+            margin: 10px auto
+            padding: 20px
+            .contactar
+                padding: 10px 0
+                display: table
+                .icono
+                    border: 2px solid #aa0000
+                    height: 50px
+                    width: 50px
+                    border-radius: 50%
+                    display: inline-block
+                    text-align: center
+                    display: table-cell
+                    vertical-align: middle
+                .web
+                    &:hover
+                        border: 2px solid #333
+                        cursor: pointer
+                        color: #aa0000
+                        background: #ccc
+                .facebook
+                    &:hover 
+                        border: 2px solid #ccc
+                        cursor: pointer
+                        color: #fff
+                        background: #3b5998
+                .info 
+                    padding-left: 10px
+                    color: #333
+                    display: table-cell
+                    vertical-align: middle
+                    font-weight: 100
+                    strong 
+                        color: #aa0000
+                    a
+                        font-size: 16px
+                        color: #333
+                        &:hover
+                            text-decoration: none
+                            color: #0056b3
+    .acerca-de
+        margin: 150px 0 100px 0
+        font-weight: 200
+        font-size: 16px
+        text-align: center
+        .iconos
+            color: #f1f1f1
+            
+    .fotos
+        text-align: justify
+        .titulo
+            font-size: 20px
+            font-weight: 500
+            margin: 10px auto
+            padding: 10px 15px
+            text-align: center
+            color: #333
+            border-bottom: 1px solid #ccc
+        .parrafo
+            margin: 10px
+            padding: 10px 20px
+            font-size: 16px
+            font-family: 'Open-Sans', 'Arial', sans-serif
+            color: #191919
+        li 
+            margin: 0 50px
+            font-size: 14px
+            font-family: 'Open-Sans', 'Arial', sans-serif
+            color: #2e2e2e
+
+    .tipos
+        .titulo
+            padding: 10px 0
+            font-size: 20px
+            font-weight: 500
+            color: #aa0000
+            text-align: center
+            text-transform: uppercase
+        .caracteristica
+            width: 50%
+            text-align: center
+            .icono
+                margin: auto
+                margin-bottom: 10px
+                height: 30px
+                width: 30px
+                border: 1px solid #707070
+                border-radius: 50%
+                padding: 5px
+                display: table
+                .icon
+                    height: 25px
+                    width: 25px
+                    border-radius: 50%
+                    padding: 20px
+                    color: #fff
+                    background-color: $primario
+                    font-size: 30px
+                    display: table-cell
+                    vertical-align: middle
+            .primera_linea
+                font-size: 20px
+                color: #333
+            .segunda_linea
+                font-size: 16px
+                font-style: italic
+                color: #857E7E
+            .parrafo
+                margin: 10px 10px
+                padding: 10px
+                font-size: 16px
+                font-family: 'Open-Sans', 'Arial', sans-serif
+                color: #050517
+        .cajas
+            display: flex
+            justify-content: center
+            margin-bottom: 20px
+            .personalidad
+                width: 150px
+                height: 150px
+                margin: 10px
+                display: flex
+                justify-content: center
+                flex-wrap: wrap
+                flex-direction: row
+                align-items: center
+                border: 1px solid #ccc
+                border-radius: 5px
+                &.primario
+                    background-color: $primario
+    .test
+        .form-matricula
+            margin: 10px auto
+            width: 90%
+            border-radius: 5px
+            box-shadow: 1px 1px 2px 2px #ccc
+            .titulo
+                font-size: 20px
+                font-weight: 500
+                margin: 10px auto
+                padding: 10px 15px
+                text-align: center
+                color: #333
+            .parrafo
+                font-size: 16px
+                font-family: 'Open-Sans', 'Arial', sans-serif
+                color: #050517
+            .form
+                margin: 15px auto
+                padding: 0 15px
+                .btn
+                    margin-bottom: 10px
+                

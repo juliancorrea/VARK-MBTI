@@ -1,0 +1,34 @@
+$color-primario: #aa0000
+
+.navbar-custom
+    border-top: 5px solid $color-primario
+    box-shadow: 1px 1px 10px #000
+    background-color: #222
+    .navbar-toggler
+        border-color: #fff
+    .navbar-nav 
+        border-top: 1px solid #000
+        .nav-item
+            text-align: center
+            a 
+                color: #fff
+                &:hover
+                    color: $color-primario
+            &.active
+                .nav-link
+                    color: $color-primario
+            &.acceder
+                margin-bottom: 10px
+                .nav-link
+                    border-radius: 4px
+                    border: 2px solid $color-primario
+                    color: #4f4f4f
+                    padding: 5px 0
+                    font-weight: 600
+                    width: 70%
+                    display: inline-block
+                    margin: 0 10px
+                    &:hover
+                        text-decoration: none
+                        background: $color-primario
+                        color: #fff

@@ -1,4 +1,15 @@
 <?php
+    session_start();
+    if(!isset($_SESSION["matricula"]))
+    {
+        header('Refresh: 0; URL = index.php');
+        die();
+    }
+?>
+
+<?php
+require 'database.php';
+$matricula = $_SESSION["matricula"];
 
 $total_extrovertido = 0;
 $total_introvertido = 0;
@@ -127,6 +138,13 @@ for($i = 0; $i < count($_POST['inlineRadioOptions']); ++$i) {
     }
     
 }
+
+$pdo = Database::connect();
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$sql = "INSERT INTO resultado_mbti (Matricula,SumaExtroversion,SumaIntroversion,SumaSensorial,SumaIntuitivo,SumaRacional,SumaEmocional,SumaCalificador,SumaPerceptivo,Status) values(?, ?, ?, ?, ?, ?, ?, ?, ?, 100)";
+$q = $pdo->prepare($sql);
+$q->execute(array($matricula,$total_extrovertido,$total_introvertido,$total_sensorial,$total_intuitivo,$total_racional,$total_emocional,$total_calificador,$total_perceptivo));
+Database::disconnect();
 
 $resultado = "";
 
@@ -327,12 +345,50 @@ switch($resultado)
 ?>
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no,
+        initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+        crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="css/fontawesome.min.css"> -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="./css/estilos.css">
+    <link rel="shortcut icon" href="./img/fs.ico" type="image/x-icon">
     <title>Test de Personalidad MBTI - Resultados</title>
-    <script src="./js/jquery-3.3.1.min.js"></script>
-    <script src="./js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
 </head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <a href="#"><img src="./img/logo.png" alt=""></a>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse btns" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto w-100 justify-content-end">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.php">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="test_launcher.php">Realizar test</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.php">Contacto</a>
+                        </li>
+                        <li class="nav-item acceder">
+                            <a class="nav-link" href="acceder.php">Acceder</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
 
 <div class="container">
     <table class="table">
@@ -399,5 +455,28 @@ switch($resultado)
                 <?php echo $s_desarrollo?>
             </div>
         </div>
+        <button class="btn btn-primary mt-3" onclick="location.href='index.php';">Regresar</button>
     </div>
 </div>
+<footer>
+        <div class="footer-content mt-3">
+            <div class="container">
+                <div class="row border-top">
+                    <div class="col-md-8 footer-item">
+                        <h3 class="titulo">Facultad de Sistemas</h3>
+                        <a href="contact.php" class="btn btn-link">Contacto</a>
+                        <a href="about.php" class="btn btn-link">Acerca de</a>
+                    </div>
+                    <div class="col-md-4 footer-item">
+                        <a href="#" class="btn btn-link">Subir en Página</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./js/jquery-3.3.1.min.js"></script>
+    <script src="./js/popper.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+
+</body>
