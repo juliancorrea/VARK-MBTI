@@ -271,5 +271,24 @@
         "pageLength": 10,
         "bLengthChange": false
     });
+
+    $('#sug_dt').DataTable({
+      "language": {
+            "lengthMenu": "Mostrando _MENU_ registros por página",
+            "zeroRecords": "No se encontraron resultados",
+            "info": "Mostrando página _PAGE_ de _PAGES_",
+            "infoEmpty": "No hay registros disponibles",
+            "infoFiltered": "(Filtrado de _MAX_ registros totales)",
+            "search": "Buscar: ",
+            "paginate": {
+              "previous": "Anterior",
+              "next": "Siguiente",
+              "last": "Ultimo",
+              "first": "Primero"
+            }
+        },
+        "pageLength": 10,
+        "bLengthChange": false
+    });
   });
 </script>
