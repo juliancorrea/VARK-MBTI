@@ -16,7 +16,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
         <div class="container">
-            <a class="navbar-brand" href="#"><img src="./img/fsblack.png" alt=""></a>
+            <a class="navbar-brand" href="index.php"><img src="./img/fsblack.png" alt=""></a>
             <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -74,8 +74,8 @@
                 <div class="row border-top">
                     <div class="col-md-8 footer-item">
                         <h3 class="titulo">Facultad de Sistemas</h3>
-                        <a href="contacto.html" class="btn btn-link">Contacto</a>
-                        <a href="about.html" class="btn btn-link">Acerca de</a>
+                        <a href="contact.php" class="btn btn-link">Contacto</a>
+                        <a href="about.php" class="btn btn-link">Acerca de</a>
                     </div>
                     <div class="col-md-4 footer-item">
                         <a href="#" class="btn btn-link">Subir en Página</a>

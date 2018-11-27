@@ -65,7 +65,7 @@
         ?>
 
                 <a class="navbar-brand" href="#">
-                    <a href="#"><img src="./img/logo.png" alt=""></a>
+                    <a href="index.php"><img src="./img/logo.png" alt=""></a>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -79,7 +79,7 @@
                             <a class="nav-link" href="test_launcher.php">Realizar test</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contacto.php">Contacto</a>
+                            <a class="nav-link" href="contact.php">Contacto</a>
                         </li>
                         <li class="nav-item">
                         <a class="nav-link" href="dashboard.php">Dashboard</a>
@@ -102,7 +102,7 @@
 
     <main>
 		<div class="container mt-3">
-  			<h2>Realizar prueba</h2><br/>
+  			<h2>Realizar test</h2><br/>
   			<!-- Tab panes -->
   			<div class="tab-content">
     			<div id="alumnos" class="container tab-pane active"><br>

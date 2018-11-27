@@ -1,58 +1,31 @@
 <?php
     session_start();
-    if(!isset($_SESSION["matricula"]))
+    if(!isset($_SESSION["admin"]))
     {
-        header('Refresh: 0; URL = index.php');
-        die();
+      header('Refresh: 0; URL = login.php');
+      die();
+    }
+
+    require 'database.php';
+    $id = 0;
+     
+    if (!empty($_GET['id'])) {
+        $id = $_REQUEST['id'];
+    }
+     
+    if (!empty($_POST)) {
+        $id = $_POST['id'];
+         
+        $pdo = Database::connect();
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "DELETE from resultado_mbti WHERE Matricula = ?";
+        $q = $pdo->prepare($sql);
+        $q->execute(array($id));
+        Database::disconnect();
+        header("Location: dashboard.php");
+         
     }
 ?>
-
-<?php
-    include 'database.php';
-    $pdo = Database::connect();
-    $msg = '';
-    $matricula = $_SESSION["matricula"];
-
-    if(isset($_POST['start']))
-    {
-        if($_POST['tests'][0] == "Test de Aprendizaje VARK")
-        {
-            // to-do: Obtener resultado de bd si usuario ya realizó test.
-            // foreach($pdo -> query("SELECT * FROM resultado_vark WHERE Matricula = '$matricula'") as $bd_user)
-            // {
-            //     echo $bd_user["Matricula"];
-            //     if($bd_user["Matricula"])
-            //     {
-            //         $msg = 'Usted ya realizó este test.';
-            //         break;
-            //     }
-            // } 
-            header('Refresh: 0; URL = vark.php'); 
-        }
-        else
-        if($_POST['tests'][0] == "Test de Personalidad MBTI")
-        {
-            // foreach($pdo -> query("SELECT * FROM resultado_mbti WHERE Matricula = '$matricula'") as $bd_user)
-            // {
-            //     if($bd_user["Matricula"])
-            //     {
-            //         $msg = 'Usted ya realizó este test.';
-            //         break;
-            //     }
-            // }  
-            header('Refresh: 0; URL = mbti.php');
-        }
-
-    }
-        
-?>
-                
-
-
-
-
-<!DOCTYPE html>
-<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -65,8 +38,9 @@
     <!-- <link rel="stylesheet" href="css/fontawesome.min.css"> -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
     <link rel="stylesheet" href="./css/estilos.css">
+    <link rel="stylesheet" href="./css/datatables.min.css">
     <link rel="shortcut icon" href="./img/fs.ico" type="image/x-icon">
-    <title>Seleccione un test - VARK y MBTI</title>
+    <title>Eliminar registro - VARK y MBTI</title>
 </head>
 
 <body>
@@ -92,8 +66,8 @@
                             <a class="nav-link" href="contact.php">Contacto</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link" href="dashboard.php">Dashboard</a>
-                    </li>
+                            <a class="nav-link" href="dashboard.php">Dashboard</a>
+                        </li>
                         <?php
                             if(isset($_SESSION["expediente"]) || isset($_SESSION["admin"]))
                             {
@@ -104,34 +78,26 @@
                                 echo '<li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>';
                             }
                         ?>
+
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
 
-    <main>
-        <div class="container mt-3">
-            <h2><b>Bienvenido <?php echo $_SESSION["alumno"]?></b></h2>
-            <h2>Por favor seleccione un test:</h2>
-            <br />
-            <div class="col-md-12">
-            <form class="form-signin" role="form" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); 
-                    ?>"
-                    method="post">
-                <select name="tests[]" class="form-control" id="testSelect">
-                    <option>Test de Aprendizaje VARK</option>
-                    <option>Test de Personalidad MBTI</option>
-                </select>
-                <p class="form-signin-heading" style="color: red">
-                        <?php echo $msg; ?>
-                    </p>
-                <button class="btn btn-lg btn-success btn-block mt-3" type="submit" name="start">Comenzar</button>
-            </form>
+    <div class="card-body">
+        <form class="form-horizontal" action="delete_mbti.php" method="post">
+            <input type="hidden" name="id" value="<?php echo $id;?>" />
+            <div class="col-md-12 text-center">
+                <p class="alert alert-error">¿Está seguro de borrar este registro?</p>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-danger">Si</button>
+                    <a class="btn btn-primary" href="dashboard.php">No</a>
+                </div>
             </div>
-            
-        </div>
-    </main>
+        </form>
+    </div>
+
 
     <footer>
         <div class="footer-content mt-3">
@@ -153,6 +119,6 @@
     <script src="./js/jquery-3.3.1.min.js"></script>
     <script src="./js/popper.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
-</body>
+    <script src="./js/datatables.min.js"></script>
 
-</html>
+</body>

@@ -28,7 +28,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
                 <a class="navbar-brand" href="#">
-                    <a href="#"><img src="./img/logo.png" alt=""></a>
+                    <a href="index.php"><img src="./img/logo.png" alt=""></a>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -89,7 +89,6 @@
                         <th>Suma Auditivo</th>
                         <th>Suma Lectura/Escritura</th>
                         <th>Suma Quinestésico</th>
-                        <th>Status
                         <th>Acciones</th>
                         </tr>
                     </thead>
@@ -104,13 +103,8 @@
                                 echo '<td>'. $row['SumaAuditivo'] . '</td>';
                                 echo '<td>'. $row['SumaLectura'] . '</td>';
                                 echo '<td>'. $row['SumaQuinestesico'] . '</td>';
-                                echo '<td>'. $row['Status'] . '</td>';
                                 echo '<td width=250>';
-                                echo '<a class="btn btn-primary" href="details.php?id='.$row['Matricula'].'">Detalles</a>';
-                                echo ' ';
-                                echo '<a class="btn btn-success" href="edit.php?id='.$row['Matricula'].'">Editar</a>';
-                                echo ' ';
-                                echo '<a class="btn btn-danger" href="delete.php?id='.$row['Matricula'].'">Eliminar</a>';
+                                echo '<a class="btn btn-danger" href="delete_vark.php?id='.$row['Matricula'].'">Eliminar</a>';
                                 echo '</td>';
                                 echo '</tr>';
                     }
@@ -141,7 +135,6 @@
                         <th>Suma Emocional</th>
                         <th>Suma Calificador</th>
                         <th>Suma Perceptivo</th>
-                        <th>Status
                         <th>Acciones</th>
                         </tr>
                     </thead>
@@ -159,13 +152,45 @@
                                 echo '<td>'. $row['SumaEmocional'] . '</td>';
                                 echo '<td>'. $row['SumaCalificador'] . '</td>';
                                 echo '<td>'. $row['SumaPerceptivo'] . '</td>';
-                                echo '<td>'. $row['Status'] . '</td>';
                                 echo '<td width=250>';
-                                echo '<a class="btn btn-primary" href="details.php?id='.$row['Matricula'].'">Detalles</a>';
-                                echo ' ';
-                                echo '<a class="btn btn-success" href="edit.php?id='.$row['Matricula'].'">Editar</a>';
-                                echo ' ';
-                                echo '<a class="btn btn-danger" href="delete.php?id='.$row['Matricula'].'">Eliminar</a>';
+                                echo '<a class="btn btn-danger" href="delete_mbti.php?id='.$row['Matricula'].'">Eliminar</a>';
+                                echo '</td>';
+                                echo '</tr>';
+                    }
+                    Database::disconnect();
+                    
+                    echo '</tbody>
+                </table>
+            </div>
+        </div>
+    </div>';
+    echo '<div class="col-md-12">
+            <div class="card mt-3">
+            <div class="card-header">
+                <div class="row">
+                    <h3>Lista de sugerencias</h3>
+                </div>
+            </div>
+            <div class="card-body">
+            <table class="table table-striped table-bordered" id="sug_dt" width="100%">
+                    <thead>
+                        <tr>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>Sugerencia</th>
+                        <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>';
+                    $pdo = Database::connect();
+                    $sql = 'SELECT * FROM sugerencias ORDER BY id DESC';
+                    foreach ($pdo -> query($sql) as $row) {
+                                echo '<tr>';
+                                echo '<td>'. $row['nombre'] . '</td>';
+                                echo '<td>'. $row['email'] . '</td>';
+                                echo '<td>'. $row['sugerencia'] . '</td>';
+                                echo '<td width=250>';
+                                echo '<a class="btn btn-danger" href="delete_comment.php?id='.$row['id'].'">Eliminar</a>';
                                 echo '</td>';
                                 echo '</tr>';
                     }

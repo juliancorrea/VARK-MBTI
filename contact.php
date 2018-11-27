@@ -1,3 +1,25 @@
+<?php
+            include 'database.php';
+            
+            $msg = '';
+            
+            if (isset($_POST['sugerencias']) && !empty($_POST['inputNombre']) && !empty($_POST['inputEmail']) && !empty($_POST['inputMensaje'])) {
+            
+                echo "hola";
+                $form_nombre = $_POST['inputNombre'];
+                $form_email = $_POST['inputEmail'];
+                $form_mensaje = $_POST['inputMensaje'];
+                
+                $pdo = Database::connect();
+                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $sql = "INSERT INTO sugerencias (nombre,email,sugerencia) values(?, ?, ?)";
+                $q = $pdo->prepare($sql);
+                $q->execute(array($form_nombre,$form_email,$form_mensaje));
+                Database::disconnect();
+                $msg = '¡Gracias por tus sugerencias!';
+            }
+        ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +34,7 @@
     <link rel="stylesheet" href="./css/estilos.css">
     <link rel="shortcut icon" href="./img/fs.ico" type="image/x-icon">
     <script src='https://www.google.com/recaptcha/api.js?render=6Lcug3oUAAAAANW8BWMc6db87rp3HTsA8BBYhSkd'></script>
-    <title>VARK y MBTI - Contacto</title>
+    <title>Contacto - VARK y MBTI</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
@@ -67,7 +89,13 @@
         </div>
     </header>
 
-    <main>        
+    <main>
+        <div class="text-center">
+            <h2 class="form-signin-heading" style="color: green">
+                    <?php echo $msg; ?>
+            </h2>
+        </div>
+            
         <section class="generales">
             <div class="container">
                 <div class="row"></div>
@@ -84,23 +112,26 @@
 
         <section class="contacto">
             <div class="container">
+            <h1>¿Sugerencias? ¡Escríbenos!</h1>
                 <div class="row">
                     <div class="col-md-6">
-                        <form class="form_contacto">
+                        <form class="form_contacto" role="form" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); 
+                    ?>"
+                    method="post">
                             <div class="form-group">
-                                <input type="text" class="form-control" id="inputNombre" placeholder="Nombre (Obligatorio)">
+                                <input type="text" class="form-control" name="inputNombre" id="inputNombre" placeholder="Nombre (Obligatorio)" required>
                             </div>
                             <div class="form-group">
-                                <input type="email" class="form-control" id="inputEmail" placeholder="Correo electrónico (Obligatorio)">
+                                <input type="email" class="form-control" name="inputEmail" id="inputEmail" placeholder="Correo electrónico (Obligatorio)" required>
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control" id="" rows="3" placeholder="Mensaje (Obligatorio)"></textarea>
+                                <textarea class="form-control" id="" rows="3" name="inputMensaje" placeholder="Mensaje (Obligatorio)" required></textarea>
                             </div>
                             <div class="captcha form-group">
                                 <div class="g-recaptcha" data-sitekey="6Leukm4UAAAAAOmkY9OOKd-L5cdzVyqKzN2TABgf"></div>
                             </div>
                             <div class="form-group">
-                                <input type="submit" class="btn btn-outline-success btn-send" value="Enviar Mensaje">
+                                <input type="submit" name="sugerencias" class="btn btn-outline-success btn-send" value="Enviar Mensaje">
                             </div>
                         </form>
                     </div>

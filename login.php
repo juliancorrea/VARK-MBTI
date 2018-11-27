@@ -19,7 +19,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     <link rel="stylesheet" href="./css/estilos.css">
     <link rel="shortcut icon" href="./img/fs.ico" type="image/x-icon">
-    <title>VARK y MBTI</title>
+    <title>Login - VARK y MBTI</title>
 </head>
 <body>
     <header>
@@ -103,7 +103,7 @@
             }
         ?>
                 <a class="navbar-brand" href="#">
-                    <a href="#"><img src="./img/logo.png" alt=""></a>
+                    <a href="index.php"><img src="./img/logo.png" alt=""></a>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -200,8 +200,8 @@
                 <div class="row border-top">
                     <div class="col-md-8 footer-item">
                         <h3 class="titulo">Facultad de Sistemas</h3>
-                        <a href="contacto.html" class="btn btn-link">Contacto</a>
-                        <a href="about.html" class="btn btn-link">Acerca de</a>
+                        <a href="contact.php" class="btn btn-link">Contacto</a>
+                        <a href="about.php" class="btn btn-link">Acerca de</a>
                     </div>
                     <div class="col-md-4 footer-item">
                         <a href="#" class="btn btn-link">Subir en Página</a>
