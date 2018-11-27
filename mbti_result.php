@@ -341,6 +341,7 @@ switch($resultado)
         break;
     
 }
+unset($_SESSION["matricula"]);
 
 ?>
 
@@ -356,7 +357,7 @@ switch($resultado)
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
     <link rel="stylesheet" href="./css/estilos.css">
     <link rel="shortcut icon" href="./img/fs.ico" type="image/x-icon">
-    <title>Test de Personalidad MBTI - Resultados</title>
+    <title>Resultados - Test de Personalidad MBTI</title>
 </head>
 
 <body>
@@ -376,14 +377,24 @@ switch($resultado)
                             <a class="nav-link" href="index.php">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="test_launcher.php">Realizar test</a>
+                            <a class="nav-link" href="test_launcher.php">Realizar Test</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="contact.php">Contacto</a>
                         </li>
-                        <li class="nav-item acceder">
-                            <a class="nav-link" href="acceder.php">Acceder</a>
-                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="dashboard.php">Dashboard</a>
+                    </li>
+                        <?php
+                            if(isset($_SESSION["expediente"]) || isset($_SESSION["admin"]))
+                            {
+                                echo '<li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>';
+                            }
+                            else
+                            {
+                                echo '<li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>';
+                            }
+                        ?>
                     </ul>
                 </div>
             </div>

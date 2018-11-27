@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="./css/estilos.css">
     <link rel="shortcut icon" href="./img/fs.ico" type="image/x-icon">
     <script src='https://www.google.com/recaptcha/api.js?render=6Lcug3oUAAAAANW8BWMc6db87rp3HTsA8BBYhSkd'></script>
-    <title>VARK y MBTI</title>
+    <title>VARK y MBTI - Contacto</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
@@ -29,14 +29,25 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="test_launcher.php">Realizar test</a>
+                        <a class="nav-link" href="test_launcher.php">Realizar Test</a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="contact.php">Contacto</a>
                     </li>
-                    <li class="nav-item acceder">
-                        <a class="nav-link" href="acceder.php">Acceder</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.php">Dashboard</a>
                     </li>
+                        <?php
+                            if(isset($_SESSION["expediente"]) || isset($_SESSION["admin"]))
+                            {
+                                echo '<li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>';
+                            }
+                            else
+                            {
+                                echo '<li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>';
+                            }
+                        ?>
+                    
                 </ul>
             </div>
         </div>

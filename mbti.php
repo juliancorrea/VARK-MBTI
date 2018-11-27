@@ -42,14 +42,24 @@
                             <a class="nav-link" href="index.php">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="test_launcher.php">Realizar test</a>
+                            <a class="nav-link" href="test_launcher.php">Realizar Test</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="contact.php">Contacto</a>
                         </li>
-                        <li class="nav-item acceder">
-                            <a class="nav-link" href="acceder.php">Acceder</a>
-                        </li>
+                        <li class="nav-item">
+                                <a class="nav-link" href="dashboard.php">Dashboard</a>
+                            </li>
+                                <?php
+                                    if(isset($_SESSION["expediente"]) || isset($_SESSION["admin"]))
+                                    {
+                                        echo '<li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>';
+                                    }
+                                    else
+                                    {
+                                        echo '<li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>';
+                                    }
+                                ?>
                     </ul>
                 </div>
             </div>
@@ -437,8 +447,7 @@
                     </div>
                     <div class="card-body">
                         <p><b>Prefiere instrucciones detalladas</b></p>
-                    </div>
-                    <div class="text-center">
+                        <div class="text-center">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="inlineRadioOptions[12]" id="inlineRadio49"
                                 value="Sensorial_TD">
@@ -460,6 +469,8 @@
                             <label class="form-check-label" for="inlineRadio52">Totalmente de acuerdo</label>
                         </div>
                     </div>
+                </div>
+                    
                 </div>
                 <div class="card mb-2">
                     <div class="card-header bg-danger text-white">
@@ -799,8 +810,7 @@
                     </div>
                     <div class="card-body">
                         <p><b>Honesto y directo</b></p>
-                    </div>
-                    <div class="text-center">
+                        <div class="text-center">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="inlineRadioOptions[24]" id="inlineRadio97"
                                 value="Racional_TD">

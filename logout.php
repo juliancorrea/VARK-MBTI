@@ -1,58 +1,4 @@
-<?php
-    session_start();
-    if(!isset($_SESSION["matricula"]))
-    {
-        header('Refresh: 0; URL = index.php');
-        die();
-    }
-?>
 
-<?php
-    include 'database.php';
-    $pdo = Database::connect();
-    $msg = '';
-    $matricula = $_SESSION["matricula"];
-
-    if(isset($_POST['start']))
-    {
-        if($_POST['tests'][0] == "Test de Aprendizaje VARK")
-        {
-            // to-do: Obtener resultado de bd si usuario ya realizó test.
-            // foreach($pdo -> query("SELECT * FROM resultado_vark WHERE Matricula = '$matricula'") as $bd_user)
-            // {
-            //     echo $bd_user["Matricula"];
-            //     if($bd_user["Matricula"])
-            //     {
-            //         $msg = 'Usted ya realizó este test.';
-            //         break;
-            //     }
-            // } 
-            header('Refresh: 0; URL = vark.php'); 
-        }
-        else
-        if($_POST['tests'][0] == "Test de Personalidad MBTI")
-        {
-            // foreach($pdo -> query("SELECT * FROM resultado_mbti WHERE Matricula = '$matricula'") as $bd_user)
-            // {
-            //     if($bd_user["Matricula"])
-            //     {
-            //         $msg = 'Usted ya realizó este test.';
-            //         break;
-            //     }
-            // }  
-            header('Refresh: 0; URL = mbti.php');
-        }
-
-    }
-        
-?>
-                
-
-
-
-
-<!DOCTYPE html>
-<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -65,8 +11,9 @@
     <!-- <link rel="stylesheet" href="css/fontawesome.min.css"> -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
     <link rel="stylesheet" href="./css/estilos.css">
+    <link rel="stylesheet" href="./css/datatables.min.css">
     <link rel="shortcut icon" href="./img/fs.ico" type="image/x-icon">
-    <title>Seleccione un test - VARK y MBTI</title>
+    <title>Logout - VARK y MBTI</title>
 </head>
 
 <body>
@@ -109,31 +56,38 @@
             </div>
         </nav>
     </header>
+    <?php
+   session_start();
+   if(isset($_SESSION["email"]))
+   {
+        unset($_SESSION["email"]);
+   }
+   if(isset($_SESSION["password"]))
+   {
+        unset($_SESSION["password"]);
+   }
+   if(isset($_SESSION["admin"]))
+   {
+        unset($_SESSION["admin"]);
+   }
+   if(isset($_SESSION["matricula"]))
+   {
+        unset($_SESSION["matricula"]);
+   }
+   if(isset($_SESSION["expediente"]))
+   {
+        unset($_SESSION["expediente"]);
+   }
+   if(isset($_SESSION["nombre"]))
+   {
+        unset($_SESSION["nombre"]);
+   }
 
-    <main>
-        <div class="container mt-3">
-            <h2><b>Bienvenido <?php echo $_SESSION["alumno"]?></b></h2>
-            <h2>Por favor seleccione un test:</h2>
-            <br />
-            <div class="col-md-12">
-            <form class="form-signin" role="form" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); 
-                    ?>"
-                    method="post">
-                <select name="tests[]" class="form-control" id="testSelect">
-                    <option>Test de Aprendizaje VARK</option>
-                    <option>Test de Personalidad MBTI</option>
-                </select>
-                <p class="form-signin-heading" style="color: red">
-                        <?php echo $msg; ?>
-                    </p>
-                <button class="btn btn-lg btn-success btn-block mt-3" type="submit" name="start">Comenzar</button>
-            </form>
-            </div>
-            
-        </div>
-    </main>
-
-    <footer>
+   
+   echo 'Ha cerrado sesión satisfactoriamente. <br>Redireccionando a login...';
+   header('Refresh: 2; URL = login.php');
+?>
+        <footer>
         <div class="footer-content mt-3">
             <div class="container">
                 <div class="row border-top">
@@ -153,6 +107,6 @@
     <script src="./js/jquery-3.3.1.min.js"></script>
     <script src="./js/popper.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
-</body>
+    <script src="./js/datatables.min.js"></script>
 
-</html>
+</body>

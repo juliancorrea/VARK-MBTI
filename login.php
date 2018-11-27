@@ -1,8 +1,10 @@
 <?php
-   session_start();
+ session_start();
+   if(isset($_SESSION["expediente"]) || isset($_SESSION["admin"]))
+    {
+        header('Refresh: 0; URL = dashboard.php');
+    }
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +19,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> 
     <link rel="stylesheet" href="./css/estilos.css">
     <link rel="shortcut icon" href="./img/fs.ico" type="image/x-icon">
-    <title>Ingrese al test - VARK y MBTI</title>
+    <title>VARK y MBTI</title>
 </head>
 <body>
     <header>
@@ -29,14 +31,50 @@
             
             $msg = '';
             
-            if (isset($_POST['login']) && !empty($_POST['matricula'])) {
+            if (isset($_POST['maestro']) && !empty($_POST['expediente'])) {
             
-                $form_matricula = $_POST['matricula'];
+                $form_expediente = $_POST['expediente'];
                 
                 $grant_access = false;
-                foreach($pdo -> query("SELECT * FROM alumnos WHERE matricula = '$form_matricula'") as $bd_user)
+                foreach($pdo -> query("SELECT * FROM gruposmaestros WHERE expediente = '$form_expediente'") as $bd_user)
                 {
-                    if($bd_user["matricula"] == $form_matricula)
+                    if($bd_user["expediente"] == $form_expediente)
+                    {
+                        $grant_access = true;
+                        echo "hola";
+                        break;
+                    }
+                }
+                if($grant_access && isset($_SESSION))
+                {
+                    $_SESSION['valid'] = true;
+                    $_SESSION['timeout'] = time();
+                    $_SESSION['expediente'] = $form_expediente;
+                    $_SESSION['nombre'] = $bd_user["maestro"];
+                    ?>
+                    <!DOCTYPE html>
+                    <html>
+                    <script type="text/javascript">
+                        window.location = "dashboard.php";
+                    </script>
+                    </html>
+                    <?php
+                }
+                else
+                {
+                    $msg = 'Expediente incorrecto, verifique por favor.';
+                }
+            }
+            if (isset($_POST['admin']) && !empty($_POST['email']) 
+            && !empty($_POST['password'])) {
+            
+                $form_email = $_POST['email'];
+                $form_pwd = $_POST['password'];
+                
+                $grant_access = false;
+                foreach($pdo -> query("SELECT * FROM admin WHERE email = '$form_email'") as $bd_user)
+                {
+                    if($bd_user["email"] == $form_email && $bd_user["password"] == $form_pwd)
                     {
                         $grant_access = true;
                         break;
@@ -46,24 +84,24 @@
                 {
                     $_SESSION['valid'] = true;
                     $_SESSION['timeout'] = time();
-                    $_SESSION['matricula'] = $form_matricula;
-                    $_SESSION['alumno'] = $bd_user["alumno"] 
+                    $_SESSION['admin'] = $bd_user["nombre"];
+                    $_SESSION['email'] = $form_email;
+                    $_SESSION['password'] = $bd_user["password"];
                     ?>
                     <!DOCTYPE html>
                     <html>
                     <script type="text/javascript">
-                        window.location = "test_selection.php";
+                        window.location = "dashboard.php";
                     </script>
                     </html>
                     <?php
                 }
                 else
                 {
-                    $msg = 'Matrícula incorrecta, verifique por favor.';
+                    $msg = 'Credenciales incorrectas, verifique por favor.';
                 }
             }
         ?>
-
                 <a class="navbar-brand" href="#">
                     <a href="#"><img src="./img/logo.png" alt=""></a>
                 </a>
@@ -76,10 +114,10 @@
                             <a class="nav-link" href="index.php">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="test_launcher.php">Realizar test</a>
+                            <a class="nav-link" href="test_launcher.php">Realizar Test</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contacto.php">Contacto</a>
+                            <a class="nav-link" href="contact.php">Contacto</a>
                         </li>
                         <li class="nav-item">
                         <a class="nav-link" href="dashboard.php">Dashboard</a>
@@ -102,24 +140,56 @@
 
     <main>
 		<div class="container mt-3">
-  			<h2>Realizar prueba</h2><br/>
+  			<h2>Acceder</h2><br/>
+  			<!-- Nav tabs -->
+  			<ul class="nav nav-tabs">
+    			<li class="nav-item">
+      				<a class="nav-link active" data-toggle="tab" href="#maestro">Maestro</a>
+    			</li>
+    			<li class="nav-item">
+      				<a class="nav-link" data-toggle="tab" href="#admin">Administrador</a>
+    			</li>
+  			</ul>
   			<!-- Tab panes -->
   			<div class="tab-content">
-    			<div id="alumnos" class="container tab-pane active"><br>
-      				<h3>Alumnos</h3>
-      				<p>Ingrese su número de matrícula para realizar alguno de nuestros tests.</p>
+    			<div id="maestro" class="container tab-pane active"><br>
+      				<h3>Maestros</h3>
+      				<p>Ingrese su número de expediente para acceder a la plataforma.</p>
                       <form class="form-signin" role="form" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); 
                     ?>"
                     method="post">
-                    <p class="form-signin-heading" style="color: red">
+						<div class="form-group">
+							<label for="ingresarExpediente"></label>
+							<input type="text" class="form-control" name="expediente" placeholder="Número de expediente" required>
+                        </div>
+                        <p class="form-signin-heading" style="color: red">
                         <?php echo $msg; ?>
                     </p>
-                    <input type="text" class="form-control" name="matricula" placeholder="Matrícula" required
-                        autofocus></br>
-                    <button class="btn btn-lg btn-primary btn-block mb-3" type="submit" name="login">Ingresar</button>
-                </form>
-
+						<div class="form-group">
+							<button type="submit" name="maestro" class="btn btn-primary">Acceder</button>
+						</div>
+					</form>
 				</div>
+    			<div id="admin" class="container tab-pane fade"><br>
+      				<h3>Administrador</h3>
+					<p>Iniciar sesión como administrador.</p>
+					<form class="form-signin" role="form" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); 
+                    ?>"
+                    method="post">
+						<div class="form-group">
+							<input type="text" name="email" class="form-control" placeholder="Usuario" value="" required>
+						</div>
+						<div class="form-group">
+							<input type="password" name="password" class="form-control" placeholder="Contraseña" required>
+                        </div>
+                        <p class="form-signin-heading" style="color: red">
+                        <?php echo $msg; ?>
+                    </p>
+						<div class="form-group">
+							<input class="btn btn-primary" name="admin" type="submit" value="Acceder">
+						</div>	
+					</form>  
+    			</div>
   			</div>
 		</div>
     </main>
@@ -130,8 +200,8 @@
                 <div class="row border-top">
                     <div class="col-md-8 footer-item">
                         <h3 class="titulo">Facultad de Sistemas</h3>
-                        <a href="contact.php" class="btn btn-link">Contacto</a>
-                        <a href="about.php" class="btn btn-link">Acerca de</a>
+                        <a href="contacto.html" class="btn btn-link">Contacto</a>
+                        <a href="about.html" class="btn btn-link">Acerca de</a>
                     </div>
                     <div class="col-md-4 footer-item">
                         <a href="#" class="btn btn-link">Subir en Página</a>

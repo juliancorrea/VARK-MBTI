@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
     <link rel="stylesheet" href="./css/estilos.css">
     <link rel="shortcut icon" href="./img/fs.ico" type="image/x-icon">
-    <title>VARK y MBTI</title>
+    <title>Inicio - VARK y MBTI</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
@@ -28,13 +28,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="test_launcher.php">Realizar test</a>
+                        <a class="nav-link" href="test_launcher.php">Realizar Test</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="contact.php">Contacto</a>
                     </li>
                     <li class="nav-item acceder">
-                        <a class="nav-link" href="acceder.php">Acceder</a>
+                        <a class="nav-link" href="login.php">Acceder</a>
                     </li>
                 </ul>
             </div>
