@@ -1,208 +1,41 @@
 <?php
-    session_start();
-    if(!isset($_SESSION["matricula"]))
-    {
-        header('Refresh: 0; URL = index.php');
-        die();
-    }
-?>
-
-<?php
 require 'database.php';
-$matricula = $_SESSION["matricula"];
-
-$total_extrovertido = 0;
-$total_introvertido = 0;
-$total_sensorial = 0;
-$total_intuitivo = 0;
-$total_racional = 0;
-$total_emocional = 0;
-$total_calificador = 0;
-$total_perceptivo = 0;
-
-for($i = 0; $i < count($_POST['inlineRadioOptions']); ++$i) {
-    switch($_POST['inlineRadioOptions'][$i])
-    {
-        case('Extrovertido_TD'):
-            $total_introvertido += 10;
-            break;
-        case('Extrovertido_D'):
-            $total_introvertido += 7;
-            $total_extrovertido += 3;
-            break;
-        case('Extrovertido_A'):
-            $total_introvertido += 3;
-            $total_extrovertido += 7;
-            break;
-        case('Extrovertido_TA'):
-            $total_extrovertido += 10;
-            break;
-        case('Introvertido_TD'):
-            $total_extrovertido += 10;
-            break;
-        case('Introvertido_D'):
-            $total_introvertido += 3;
-            $total_extrovertido += 7;
-            break;
-        case('Introvertido_A'):
-            $total_introvertido += 7;
-            $total_extrovertido += 3;
-            break;
-        case('Introvertido_TA'):
-            $total_introvertido += 10;
-            break;
-        case('Sensorial_TD'):
-            $total_intuitivo += 10;
-            break;
-        case('Sensorial_D'):
-            $total_intuitivo += 7;
-            $total_sensorial += 3;
-            break;
-        case('Sensorial_A'):
-            $total_intuitivo += 3;
-            $total_sensorial += 7;
-            break;
-        case('Sensorial_TA'):
-            $total_sensorial += 10;
-            break;
-        case('Intuitivo_TD'):
-            $total_sensorial += 10;
-            break;
-        case('Intuitivo_D'):
-            $total_intuitivo += 3;
-            $total_sensorial += 7;
-            break;
-        case('Intuitivo_A'):
-            $total_intuitivo += 7;
-            $total_sensorial += 3;
-            break;
-        case('Intuitivo_TA'):
-            $total_intuitivo += 10;
-            break;
-        case('Racional_TD'):
-            $total_emocional += 10;
-            break;
-        case('Racional_D'):
-            $total_emocional += 7;
-            $total_racional += 3;
-            break;
-        case('Racional_A'):
-            $total_emocional += 3;
-            $total_racional += 7;
-            break;
-        case('Racional_TA'):
-            $total_racional += 10;
-            break;
-        case('Emocional_TD'):
-            $total_racional += 10;
-            break;
-        case('Emocional_D'):
-            $total_emocional += 3;
-            $total_racional += 7;
-            break;
-        case('Emocional_A'):
-            $total_emocional += 7;
-            $total_racional += 3;
-            break;
-        case('Emocional_TA'):
-            $total_emocional += 10;
-            break;
-        case('Calificador_TD'):
-            $total_perceptivo += 10;
-            break;
-        case('Calificador_D'):
-            $total_perceptivo += 7;
-            $total_calificador += 3;
-            break;
-        case('Calificador_A'):
-            $total_perceptivo += 3;
-            $total_calificador += 7;
-            break;
-        case('Calificador_TA'):
-            $total_calificador += 10;
-            break;
-        case('Perceptivo_TD'):
-            $total_calificador += 10;
-            break;
-        case('Perceptivo_D'):
-            $total_perceptivo += 3;
-            $total_calificador += 7;
-            break;
-        case('Perceptivo_A'):
-            $total_perceptivo += 7;
-            $total_calificador += 3;
-            break;
-        case('Perceptivo_TA'):
-            $total_perceptivo += 10;
-            break;
-    }
-    
+$id = null;
+if (!empty($_GET['id'])) {
+	$id = $_REQUEST['id'];
+}
+ 
+if (null == $id) {
+	header("Location: index.php");
+} else {
+	$pdo = Database::connect();
+	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	$sql = "SELECT * FROM resultado_mbti where Matricula = ?";
+	$q = $pdo->prepare($sql);
+	$q->execute(array($id));
+	$data = $q->fetch(PDO::FETCH_ASSOC);
+	Database::disconnect();
 }
 
-$suma_total = $total_introvertido + $total_extrovertido + $total_sensorial + $total_intuitivo + $total_racional + $total_emocional + $total_calificador;
+$suma_total = $data['SumaExtroversion'] + $data['SumaIntroversion'] + $data['SumaSensorial'] + $data['SumaIntuitivo'] + $data['SumaRacional'] + $data['SumaEmocional'] + $data['SumaCalificador']; 
 
 
 $dataPoints = array( 
-	array("label"=>"Introversión", "y" => $total_introvertido/$suma_total*100),
-	array("label"=>"Extroversión", "y"=> $total_extrovertido/$suma_total*100),
-	array("label"=>"Sensorial", "y"=> $total_sensorial/$suma_total*100),
-	array("label"=>"Intuitivo", "y"=> $total_intuitivo/$suma_total*100),
-	array("label"=>"Racional", "y"=> $total_racional/$suma_total*100),
-	array("label"=>"Emocional", "y"=> $total_emocional/$suma_total*100),
-	array("label"=>"Calificador", "y"=> $total_calificador/$suma_total*100)
+	array("label"=>"Introversión", "y" => $data['SumaIntroversion']/$suma_total*100),
+	array("label"=>"Extroversión", "y"=> $data['SumaExtroversion']/$suma_total*100),
+	array("label"=>"Sensorial", "y"=> $data['SumaSensorial']/$suma_total*100),
+	array("label"=>"Intuitivo", "y"=> $data['SumaIntuitivo']/$suma_total*100),
+	array("label"=>"Racional", "y"=> $data['SumaRacional']/$suma_total*100),
+	array("label"=>"Emocional", "y"=> $data['SumaEmocional']/$suma_total*100),
+	array("label"=>"Calificador", "y"=> $data['SumaCalificador']/$suma_total*100)
 );
-
-$resultado = "";
-
-if($total_extrovertido > $total_introvertido)
-{
-    $resultado .= "E";
-}
-else 
-{
-    $resultado .= "I";
-}
-
-if($total_sensorial > $total_intuitivo)
-{
-    $resultado .= "S";
-}
-else
-{
-    $resultado .= "N";
-}
-
-if($total_racional > $total_emocional)
-{
-    $resultado .= "T";
-}
-else
-{
-    $resultado .= "F";
-}
-
-if($total_calificador > $total_perceptivo)
-{
-    $resultado .= "J";
-}
-else
-{
-    $resultado .= "P";
-}
-
-$pdo = Database::connect();
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$sql = "INSERT INTO resultado_mbti (Matricula,SumaExtroversion,SumaIntroversion,SumaSensorial,SumaIntuitivo,SumaRacional,SumaEmocional,SumaCalificador,SumaPerceptivo,Resultado,Status) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 100)";
-$q = $pdo->prepare($sql);
-$q->execute(array($matricula,$total_extrovertido,$total_introvertido,$total_sensorial,$total_intuitivo,$total_racional,$total_emocional,$total_calificador,$total_perceptivo,$resultado));
-Database::disconnect();
-
-$resultado_array = str_split($resultado);
 
 $funcion1 = "";
 $funcion2 = "";
 $funcion3 = "";
 $funcion4 = "";
+
+$resultado_array = str_split($data['Resultado']);
 
 foreach($resultado_array as $char)
 {
@@ -286,7 +119,7 @@ define("ENTP_sd","Deben prestar atención a la realidad presente.<br>Deben esfor
 $p_potenciales = "";
 $s_desarrollo = "";
 
-switch($resultado)
+switch($data['Resultado'])
 {
     case("ISFJ"):
         $p_potenciales = ISFJ_pp;
@@ -354,9 +187,10 @@ switch($resultado)
         break;
     
 }
-unset($_SESSION["matricula"]);
-
+ 
 ?>
+<!DOCTYPE HTML>
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -369,7 +203,9 @@ unset($_SESSION["matricula"]);
     <!-- <link rel="stylesheet" href="css/fontawesome.min.css"> -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
     <link rel="stylesheet" href="./css/estilos.css">
+    <link rel="stylesheet" href="./css/datatables.min.css">
     <link rel="shortcut icon" href="./img/fs.ico" type="image/x-icon">
+    <title>Resultados - Test de Personalidad MBTI</title>
     <script>
         window.onload = function() {
          
@@ -393,7 +229,6 @@ unset($_SESSION["matricula"]);
          
         }
         </script>
-    <title>Resultados - Test de Personalidad MBTI</title>
 </head>
 
 <body>
@@ -419,8 +254,8 @@ unset($_SESSION["matricula"]);
                             <a class="nav-link" href="contact.php">Contacto</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link" href="dashboard.php">Dashboard</a>
-                    </li>
+                            <a class="nav-link" href="dashboard.php">Dashboard</a>
+                        </li>
                         <?php
                             if(isset($_SESSION["expediente"]) || isset($_SESSION["admin"]))
                             {
@@ -431,66 +266,83 @@ unset($_SESSION["matricula"]);
                                 echo '<li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>';
                             }
                         ?>
+
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
+    <div class="container">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Extrovertido</th>
+                    <th>Introvertido</th>
+                    <th>Sensorial</th>
+                    <th>Intuitivo</th>
+                    <th>Racional</th>
+                    <th>Emocional</th>
+                    <th>Calificador</th>
+                    <th>Perceptivo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <?php echo $data['SumaExtroversion']?>
+                    </td>
+                    <td>
+                        <?php echo $data['SumaIntroversion']?>
+                    </td>
+                    <td>
+                        <?php echo $data['SumaSensorial']?>
+                    </td>
+                    <td>
+                        <?php echo $data['SumaIntuitivo']?>
+                    </td>
+                    <td>
+                        <?php echo $data['SumaRacional']?>
+                    </td>
+                    <td>
+                        <?php echo $data['SumaEmocional']?>
+                    </td>
+                    <td>
+                        <?php echo $data['SumaCalificador']?>
+                    </td>
+                    <td>
+                        <?php echo $data['SumaPerceptivo']?>
+                    </td>
+                </tr>
+            </tbody>
 
-<div class="container">
-    <table class="table">
-        <thead class="thead-dark">
-            <tr>
-                <th>Extrovertido</th>
-                <th>Introvertido</th>
-                <th>Sensorial</th>
-                <th>Intuitivo</th>
-                <th>Racional</th>
-                <th>Emocional</th>
-                <th>Calificador</th>
-                <th>Perceptivo</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                    <?php echo $total_extrovertido?>
-                </td>
-                <td>
-                    <?php echo $total_introvertido?>
-                </td>
-                <td>
-                    <?php echo $total_sensorial?>
-                </td>
-                <td>
-                    <?php echo $total_intuitivo?>
-                </td>
-                <td>
-                    <?php echo $total_racional?>
-                </td>
-                <td>
-                    <?php echo $total_emocional?>
-                </td>
-                <td>
-                    <?php echo $total_calificador?>
-                </td>
-                <td>
-                    <?php echo $total_perceptivo?>
-                </td>
-            </tr>
-        </tbody>
+        </table>
+        <div class="text-center">
+            <h1><b>Su resultado fue:
+                    <?php echo $data['Resultado']?></b></h1>
 
-    </table>
-    <div class="text-center">
-        <h1><b>Su resultado es: <?php echo $resultado?></b></h1>
-        <ul class="list-group">
-            <li class="list-group-item"><?php echo $funcion1?></li>
-            <li class="list-group-item"><?php echo $funcion2?></li>
-            <li class="list-group-item"><?php echo $funcion3?></li>
-            <li class="list-group-item"><?php echo $funcion4?></li>
-        </ul>
-        <div id="chartContainer" style="height: 370px; width: 100%;" class="mt-3"></div>
-        <div class="card mt-3 text-white bg-danger">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <?php echo $funcion1?>
+                </li>
+                <li class="list-group-item">
+                    <?php echo $funcion2?>
+                </li>
+                <li class="list-group-item">
+                    <?php echo $funcion3?>
+                </li>
+                <li class="list-group-item">
+                    <?php echo $funcion4?>
+                </li>
+            </ul>
+            
+            
+        </div>
+
+    </div>
+
+    <div id="chartContainer" style="height: 370px; width: 100%;" class="mt-3"></div>
+    <div class="container text-center">
+    <div class="card mt-3 text-white bg-danger">
             <div class="card-header">Peligros potenciales:</div>
             <div class="card-body">
                 <?php echo $p_potenciales?>
@@ -505,9 +357,9 @@ unset($_SESSION["matricula"]);
         </div>
         <button class="btn btn-primary mt-3" onclick="location.href='index.php';">Regresar</button>
     </div>
-</div>
-<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-<footer>
+    
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <footer>
         <div class="footer-content mt-3">
             <div class="container">
                 <div class="row border-top">
@@ -527,5 +379,8 @@ unset($_SESSION["matricula"]);
     <script src="./js/jquery-3.3.1.min.js"></script>
     <script src="./js/popper.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/datatables.min.js"></script>
 
 </body>
+
+</html>

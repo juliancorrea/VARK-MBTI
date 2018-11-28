@@ -89,6 +89,7 @@
                         <th>Suma Auditivo</th>
                         <th>Suma Lectura/Escritura</th>
                         <th>Suma Quinestésico</th>
+                        <th>Resultado</th>
                         <th>Acciones</th>
                         </tr>
                     </thead>
@@ -103,7 +104,10 @@
                                 echo '<td>'. $row['SumaAuditivo'] . '</td>';
                                 echo '<td>'. $row['SumaLectura'] . '</td>';
                                 echo '<td>'. $row['SumaQuinestesico'] . '</td>';
+                                echo '<td>'. $row['Resultado'] . '</td>';
                                 echo '<td width=250>';
+                                echo '<a class="btn btn-primary" href="details_vark.php?id='.$row['Matricula'].'">Detalles</a>';
+                                echo ' ';
                                 echo '<a class="btn btn-danger" href="delete_vark.php?id='.$row['Matricula'].'">Eliminar</a>';
                                 echo '</td>';
                                 echo '</tr>';
@@ -135,6 +139,7 @@
                         <th>Suma Emocional</th>
                         <th>Suma Calificador</th>
                         <th>Suma Perceptivo</th>
+                        <th>Resultado</th>
                         <th>Acciones</th>
                         </tr>
                     </thead>
@@ -152,7 +157,10 @@
                                 echo '<td>'. $row['SumaEmocional'] . '</td>';
                                 echo '<td>'. $row['SumaCalificador'] . '</td>';
                                 echo '<td>'. $row['SumaPerceptivo'] . '</td>';
+                                echo '<td>'. $row['Resultado'] . '</td>';
                                 echo '<td width=250>';
+                                echo '<a class="btn btn-primary" href="details_mbti.php?id='.$row['Matricula'].'">Detalles</a>';
+                                echo ' ';
                                 echo '<a class="btn btn-danger" href="delete_mbti.php?id='.$row['Matricula'].'">Eliminar</a>';
                                 echo '</td>';
                                 echo '</tr>';

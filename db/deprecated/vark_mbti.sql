@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2018 at 08:34 PM
+-- Generation Time: Nov 27, 2018 at 10:49 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -9638,6 +9638,13 @@ CREATE TABLE `resultado_mbti` (
   `Status` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `resultado_mbti`
+--
+
+INSERT INTO `resultado_mbti` (`Matricula`, `SumaExtroversion`, `SumaIntroversion`, `SumaSensorial`, `SumaIntuitivo`, `SumaRacional`, `SumaEmocional`, `SumaCalificador`, `SumaPerceptivo`, `Status`) VALUES
+(14253221, 44, 46, 50, 40, 39, 51, 49, 41, 100);
+
 -- --------------------------------------------------------
 
 --
@@ -9652,6 +9659,26 @@ CREATE TABLE `resultado_vark` (
   `SumaQuinestesico` int(11) NOT NULL,
   `Status` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sugerencias`
+--
+
+CREATE TABLE `sugerencias` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(50) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `sugerencia` varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sugerencias`
+--
+
+INSERT INTO `sugerencias` (`id`, `nombre`, `email`, `sugerencia`) VALUES
+(1, 'Donkey Kong', 'dk@dk.com', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.');
 
 --
 -- Indexes for dumped tables
@@ -9695,6 +9722,12 @@ ALTER TABLE `resultado_vark`
   ADD PRIMARY KEY (`Matricula`);
 
 --
+-- Indexes for table `sugerencias`
+--
+ALTER TABLE `sugerencias`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -9703,6 +9736,12 @@ ALTER TABLE `resultado_vark`
 --
 ALTER TABLE `admin`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `sugerencias`
+--
+ALTER TABLE `sugerencias`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,89 +1,31 @@
 <?php
-    session_start();
-    if(!isset($_SESSION["matricula"]))
-    {
-        header('Refresh: 0; URL = index.php');
-        die();
-    }
-?>
-
-<?php
 require 'database.php';
-$matricula = $_SESSION["matricula"];
-$vark_array = [
-    0 => 0,
-    1 => 0,
-    2 => 0,
-    3 => 0
-];
-
-foreach($_POST['check_list'] as $selected) 
-{
-    switch($selected)
-    {
-        case("V"):
-            $vark_array[0]++;
-            break;
-        case("A"):
-            $vark_array[1]++;
-            break;
-        case("R"):
-            $vark_array[2]++;
-            break;
-        case("K"):
-            $vark_array[3]++;
-            break;
-    }
+$id = null;
+if (!empty($_GET['id'])) {
+	$id = $_REQUEST['id'];
+}
+ 
+if (null == $id) {
+	header("Location: index.php");
+} else {
+	$pdo = Database::connect();
+	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	$sql = "SELECT * FROM resultado_vark where Matricula = ?";
+	$q = $pdo->prepare($sql);
+	$q->execute(array($id));
+	$data = $q->fetch(PDO::FETCH_ASSOC);
+	Database::disconnect();
 }
 
-
-
-$max_value = 0;
-$max_index = 0;
-$resultado = "";
-
-for ($i = 0; $i < count($vark_array); $i++) 
-{
-    if($vark_array[$i] > $max_value)
-    {
-        $max_value = $vark_array[$i];
-        $max_index = $i;
-    }
-}
-
-switch($max_index) 
-{
-    case(0):
-        $resultado = "Visual";
-        break;
-    case(1):
-        $resultado = "Auditivo";
-        break;
-    case(2):
-        $resultado = "Lectura/escritura";
-        break;
-    case(3):
-        $resultado = "Quinestésico";
-        break;
-}
-
-$pdo = Database::connect();
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$sql = "INSERT INTO resultado_vark (Matricula,SumaVisual,SumaAuditivo,SumaLectura,SumaQuinestesico,Resultado,Status) values(?, ?, ?, ?, ?, ?, 100)";
-$q = $pdo->prepare($sql);
-$q->execute(array($matricula,$vark_array[0],$vark_array[1],$vark_array[2],$vark_array[3],$resultado));
-Database::disconnect();
-
-$suma_total = $vark_array[0] + $vark_array[1] + $vark_array[2] + $vark_array[3]; 
+$suma_total = $data['SumaVisual'] + $data['SumaAuditivo'] + $data['SumaLectura'] + $data['SumaQuinestesico']; 
 
 
 $dataPoints = array( 
-	array("label"=>"Visual", "y" => $vark_array[0]/$suma_total*100),
-	array("label"=>"Auditivo", "y"=> $vark_array[1]/$suma_total*100),
-	array("label"=>"Lectura/escritura", "y"=> $vark_array[2]/$suma_total*100),
-	array("label"=>"Quinestésico", "y"=> $vark_array[3]/$suma_total*100)
+	array("label"=>"Visual", "y" => $data['SumaVisual']/$suma_total*100),
+	array("label"=>"Auditivo", "y"=> $data['SumaAuditivo']/$suma_total*100),
+	array("label"=>"Lectura/escritura", "y"=> $data['SumaLectura']/$suma_total*100),
+	array("label"=>"Quinestésico", "y"=> $data['SumaQuinestesico']/$suma_total*100)
 );
-
 
 define("V_estr","Libros con diagramas y dibujos.<br>Usar símbolos.<br>Subrayar.<br>Diagramas de flujo.<br>Mapas mentales.<br>Imágenes, videos.");
 define("A_estr","Graba resumenes.<br>Estudiar con audio.<br>Explicar a otros.<br>Leer resúmenes en voz alta.<br>Explicar los apuntes a otra persona aural.<br>Conversar con maestros y compañeros.");
@@ -92,7 +34,7 @@ define("K_estr","Laboratorios.<br>Ejemplos.<br>Aplicaciones reales.<br>Proyectos
 
 $estrategia = "";
 
-switch($resultado)
+switch($data["Resultado"])
 {
     case("Visual"):
         $estrategia = V_estr;
@@ -107,9 +49,9 @@ switch($resultado)
         $estrategia = K_estr;
         break;
 }
-
-unset($_SESSION["matricula"]);
 ?>
+<!DOCTYPE HTML>
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -122,6 +64,7 @@ unset($_SESSION["matricula"]);
     <!-- <link rel="stylesheet" href="css/fontawesome.min.css"> -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
     <link rel="stylesheet" href="./css/estilos.css">
+    <link rel="stylesheet" href="./css/datatables.min.css">
     <link rel="shortcut icon" href="./img/fs.ico" type="image/x-icon">
     <title>Resultados - Test de Aprendizaje VARK</title>
     <script>
@@ -172,8 +115,8 @@ unset($_SESSION["matricula"]);
                             <a class="nav-link" href="contact.php">Contacto</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link" href="dashboard.php">Dashboard</a>
-                    </li>
+                            <a class="nav-link" href="dashboard.php">Dashboard</a>
+                        </li>
                         <?php
                             if(isset($_SESSION["expediente"]) || isset($_SESSION["admin"]))
                             {
@@ -184,54 +127,62 @@ unset($_SESSION["matricula"]);
                                 echo '<li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>';
                             }
                         ?>
+
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-
     <div class="container">
         <table class="table">
             <thead class="thead-dark">
                 <tr>
                     <th>Visual</th>
                     <th>Auditivo</th>
-                    <th>Lectura/Escritura</th>
+                    <th>Lectura/escritura</th>
                     <th>Quinestésico</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>
-                        <?php echo $vark_array[0]?>
+                        <?php echo $data['SumaVisual']?>
                     </td>
                     <td>
-                        <?php echo $vark_array[1]?>
+                        <?php echo $data['SumaAuditivo']?>
                     </td>
                     <td>
-                        <?php echo $vark_array[2]?>
+                        <?php echo $data['SumaLectura']?>
                     </td>
                     <td>
-                        <?php echo $vark_array[3]?>
+                        <?php echo $data['SumaQuinestesico']?>
                     </td>
                 </tr>
             </tbody>
 
         </table>
         <div class="text-center">
-            <h1><b>Su resultado es:
-                    <?php echo $resultado?></b></h1>
+            <h1><b>Su resultado fue:
+                    <?php echo $data['Resultado']?></b></h1>          
+            
+        </div>
 
-            <div class="card mt-3 text-white bg-success">
+    </div>
+
+    <div class="container text-center">
+    <div class="card mt-3 text-white bg-success">
                 <div class="card-header">Estrategias sugeridas para el aprendizaje:</div>
                 <div class="card-body">
                     <?php echo $estrategia?>
                 </div>
             </div>
-            <div id="chartContainer" style="height: 370px; width: 100%;" class="mt-3"></div>
-            <button class="btn btn-primary mt-3" onclick="location.href='index.php';">Regresar</button>
-        </div>
     </div>
+    
+    <div id="chartContainer" style="height: 370px; width: 100%;" class="mt-3"></div>
+    <div class="container text-center">
+        <button class="btn btn-primary mt-3" onclick="location.href='dashboard.php';">Regresar</button>
+    </div>
+    
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <footer>
         <div class="footer-content mt-3">
@@ -253,5 +204,8 @@ unset($_SESSION["matricula"]);
     <script src="./js/jquery-3.3.1.min.js"></script>
     <script src="./js/popper.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/datatables.min.js"></script>
 
 </body>
+
+</html>

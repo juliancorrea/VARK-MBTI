@@ -4,8 +4,6 @@
             $msg = '';
             
             if (isset($_POST['sugerencias']) && !empty($_POST['inputNombre']) && !empty($_POST['inputEmail']) && !empty($_POST['inputMensaje'])) {
-            
-                echo "hola";
                 $form_nombre = $_POST['inputNombre'];
                 $form_email = $_POST['inputEmail'];
                 $form_mensaje = $_POST['inputMensaje'];

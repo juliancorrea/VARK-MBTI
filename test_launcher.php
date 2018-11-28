@@ -76,7 +76,7 @@
                             <a class="nav-link" href="index.php">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="test_launcher.php">Realizar test</a>
+                            <a class="nav-link" href="test_launcher.php">Realizar Test</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="contact.php">Contacto</a>

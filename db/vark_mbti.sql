@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2018 at 10:49 PM
+-- Generation Time: Nov 28, 2018 at 06:34 AM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -9635,15 +9635,9 @@ CREATE TABLE `resultado_mbti` (
   `SumaEmocional` int(11) NOT NULL,
   `SumaCalificador` int(11) NOT NULL,
   `SumaPerceptivo` int(11) NOT NULL,
+  `Resultado` varchar(4) NOT NULL,
   `Status` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `resultado_mbti`
---
-
-INSERT INTO `resultado_mbti` (`Matricula`, `SumaExtroversion`, `SumaIntroversion`, `SumaSensorial`, `SumaIntuitivo`, `SumaRacional`, `SumaEmocional`, `SumaCalificador`, `SumaPerceptivo`, `Status`) VALUES
-(14253221, 44, 46, 50, 40, 39, 51, 49, 41, 100);
 
 -- --------------------------------------------------------
 
@@ -9657,6 +9651,7 @@ CREATE TABLE `resultado_vark` (
   `SumaAuditivo` int(11) NOT NULL,
   `SumaLectura` int(11) NOT NULL,
   `SumaQuinestesico` int(11) NOT NULL,
+  `Resultado` varchar(20) NOT NULL,
   `Status` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -9672,13 +9667,6 @@ CREATE TABLE `sugerencias` (
   `email` varchar(30) NOT NULL,
   `sugerencia` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `sugerencias`
---
-
-INSERT INTO `sugerencias` (`id`, `nombre`, `email`, `sugerencia`) VALUES
-(1, 'Donkey Kong', 'dk@dk.com', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.');
 
 --
 -- Indexes for dumped tables
@@ -9741,7 +9729,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `sugerencias`
 --
 ALTER TABLE `sugerencias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
