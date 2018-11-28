@@ -136,13 +136,13 @@ for($i = 0; $i < count($_POST['inlineRadioOptions']); ++$i) {
             $total_perceptivo += 10;
             break;
     }
-    
+
 }
 
 $suma_total = $total_introvertido + $total_extrovertido + $total_sensorial + $total_intuitivo + $total_racional + $total_emocional + $total_calificador;
 
 
-$dataPoints = array( 
+$dataPoints = array(
 	array("label"=>"Introversión", "y" => $total_introvertido/$suma_total*100),
 	array("label"=>"Extroversión", "y"=> $total_extrovertido/$suma_total*100),
 	array("label"=>"Sensorial", "y"=> $total_sensorial/$suma_total*100),
@@ -158,7 +158,7 @@ if($total_extrovertido > $total_introvertido)
 {
     $resultado .= "E";
 }
-else 
+else
 {
     $resultado .= "I";
 }
@@ -352,7 +352,7 @@ switch($resultado)
         $p_potenciales = ENTP_pp;
         $s_desarrollo = ENTP_sd;
         break;
-    
+
 }
 unset($_SESSION["matricula"]);
 
@@ -372,8 +372,8 @@ unset($_SESSION["matricula"]);
     <link rel="shortcut icon" href="./img/fs.ico" type="image/x-icon">
     <script>
         window.onload = function() {
-         
-         
+
+
         var chart = new CanvasJS.Chart("chartContainer", {
             animationEnabled: true,
             title: {
@@ -390,7 +390,7 @@ unset($_SESSION["matricula"]);
             }]
         });
         chart.render();
-         
+
         }
         </script>
     <title>Resultados - Test de Personalidad MBTI</title>
@@ -504,6 +504,7 @@ unset($_SESSION["matricula"]);
             </div>
         </div>
         <button class="btn btn-primary mt-3" onclick="location.href='index.php';">Regresar</button>
+        <a href="javascript:window.open('reporte_mbti_ind.php','','toolbar=no');void 0">Generar PDF</a>
     </div>
 </div>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>

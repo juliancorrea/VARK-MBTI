@@ -41,7 +41,7 @@ $objPHPExcel->getDefaultStyle()->applyFromArray($style);
   $pdo = Database::connect();
   $sql = 'SELECT * FROM sugerencias ORDER BY id DESC';
 	$cel=3;//Numero de fila donde empezara a crear  el reporte
-  $c="0";
+  $c="C3";
 	foreach ($pdo -> query($sql) as $row) {
 		$nombre=$row['nombre'];
 		$email=$row['email'];
@@ -63,7 +63,7 @@ $objPHPExcel->getDefaultStyle()->applyFromArray($style);
 /*Fin extracion de datos MYSQL*/
 
 
-$rango="A2:C500";
+$rango="A2:$c";
 $styleArray = array('font' => array( 'name' => 'Arial','size' => 10),
 'borders'=>array('allborders'=>array('style'=> PHPExcel_Style_Border::BORDER_THIN,'color'=>array('argb' => 'FFF')))
 );

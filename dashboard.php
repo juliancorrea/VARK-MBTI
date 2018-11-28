@@ -58,7 +58,7 @@
                                 echo '<li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>';
                             }
                         ?>
-                    
+
                     </ul>
                 </div>
             </div>
@@ -113,12 +113,13 @@
                                 echo '</tr>';
                     }
                     Database::disconnect();
-                    
+
                     echo '</tbody>
                 </table>
             </div>
         </div>
-    </div>';
+    </div>
+    <a href="javascript:window.open(\'reporte_vark.php\',\'\',\'toolbar=no\');void 0">Generar PDF</a>';
     echo '<div class="col-md-12">
             <div class="card mt-3">
             <div class="card-header">
@@ -166,13 +167,16 @@
                                 echo '</tr>';
                     }
                     Database::disconnect();
-                    
+
                     echo '</tbody>
                 </table>
             </div>
         </div>
-    </div>';
-    echo '<div class="col-md-12">
+    </div>
+    <a href="javascript:window.open(\'reporte_mbti.php\',\'\',\'toolbar=no\');void 0">Generar PDF</a>';
+
+
+    echo '  <div class="col-md-12">
             <div class="card mt-3">
             <div class="card-header">
                 <div class="row">
@@ -203,17 +207,19 @@
                                 echo '</tr>';
                     }
                     Database::disconnect();
-                    
+
                     echo '</tbody>
                 </table>
             </div>
         </div>
-    </div>';
+    </div>
+    <a href="javascript:window.open(\'reporte_sugerencias_pdf.php\',\'\',\'toolbar=no\');void 0">Generar PDF</a>
+    <a href="reporte_sugerencias_excel.php">Descargar Excel</a>';
         }
         //to-do dashboard maestros
     ?>
 
-    
+
 
 
     <footer>

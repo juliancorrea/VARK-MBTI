@@ -17,7 +17,7 @@ $vark_array = [
     3 => 0
 ];
 
-foreach($_POST['check_list'] as $selected) 
+foreach($_POST['check_list'] as $selected)
 {
     switch($selected)
     {
@@ -42,7 +42,7 @@ $max_value = 0;
 $max_index = 0;
 $resultado = "";
 
-for ($i = 0; $i < count($vark_array); $i++) 
+for ($i = 0; $i < count($vark_array); $i++)
 {
     if($vark_array[$i] > $max_value)
     {
@@ -51,7 +51,7 @@ for ($i = 0; $i < count($vark_array); $i++)
     }
 }
 
-switch($max_index) 
+switch($max_index)
 {
     case(0):
         $resultado = "Visual";
@@ -74,10 +74,10 @@ $q = $pdo->prepare($sql);
 $q->execute(array($matricula,$vark_array[0],$vark_array[1],$vark_array[2],$vark_array[3],$resultado));
 Database::disconnect();
 
-$suma_total = $vark_array[0] + $vark_array[1] + $vark_array[2] + $vark_array[3]; 
+$suma_total = $vark_array[0] + $vark_array[1] + $vark_array[2] + $vark_array[3];
 
 
-$dataPoints = array( 
+$dataPoints = array(
 	array("label"=>"Visual", "y" => $vark_array[0]/$suma_total*100),
 	array("label"=>"Auditivo", "y"=> $vark_array[1]/$suma_total*100),
 	array("label"=>"Lectura/escritura", "y"=> $vark_array[2]/$suma_total*100),
@@ -108,7 +108,7 @@ switch($resultado)
         break;
 }
 
-unset($_SESSION["matricula"]);
+// unset($_SESSION["matricula"]);
 ?>
 
 <head>
@@ -126,8 +126,8 @@ unset($_SESSION["matricula"]);
     <title>Resultados - Test de Aprendizaje VARK</title>
     <script>
         window.onload = function() {
-         
-         
+
+
         var chart = new CanvasJS.Chart("chartContainer", {
             animationEnabled: true,
             title: {
@@ -144,7 +144,7 @@ unset($_SESSION["matricula"]);
             }]
         });
         chart.render();
-         
+
         }
         </script>
 </head>
@@ -230,6 +230,7 @@ unset($_SESSION["matricula"]);
             </div>
             <div id="chartContainer" style="height: 370px; width: 100%;" class="mt-3"></div>
             <button class="btn btn-primary mt-3" onclick="location.href='index.php';">Regresar</button>
+            <a href="javascript:window.open('reporte_vark_ind.php','','toolbar=no');void 0">Generar PDF</a>
         </div>
     </div>
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
