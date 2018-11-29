@@ -230,7 +230,7 @@ switch($resultado)
             </div>
             <div id="chartContainer" style="height: 370px; width: 100%;" class="mt-3"></div>
             <button class="btn btn-primary mt-3" onclick="location.href='index.php';">Regresar</button>
-            <a href="javascript:window.open('reporte_vark_ind.php','','toolbar=no');void 0">Generar PDF</a>
+            <a class="btn btn-success" href="javascript:window.open('reporte_vark_ind.php','','toolbar=no');void 0">Generar PDF</a>
         </div>
     </div>
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>

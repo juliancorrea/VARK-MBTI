@@ -17,30 +17,28 @@
     {
         if($_POST['tests'][0] == "Test de Aprendizaje VARK")
         {
-            // to-do: Obtener resultado de bd si usuario ya realizó test.
-            // foreach($pdo -> query("SELECT * FROM resultado_vark WHERE Matricula = '$matricula'") as $bd_user)
-            // {
-            //     echo $bd_user["Matricula"];
-            //     if($bd_user["Matricula"])
-            //     {
-            //         $msg = 'Usted ya realizó este test.';
-            //         break;
-            //     }
-            // } 
-            header('Refresh: 0; URL = vark.php'); 
+            $sql = "SELECT count(*) FROM resultado_vark";
+            $q = $pdo->prepare($sql);
+            $q->execute();
+            $vark_entries = $q->fetchColumn();
+
+            if($vark_entries > 0)
+            {
+                header('Refresh: 0; URL = details_vark.php?id='.$matricula);
+            } 
         }
         else
         if($_POST['tests'][0] == "Test de Personalidad MBTI")
         {
-            // foreach($pdo -> query("SELECT * FROM resultado_mbti WHERE Matricula = '$matricula'") as $bd_user)
-            // {
-            //     if($bd_user["Matricula"])
-            //     {
-            //         $msg = 'Usted ya realizó este test.';
-            //         break;
-            //     }
-            // }  
-            header('Refresh: 0; URL = mbti.php');
+            $sql = "SELECT count(*) FROM resultado_mbti";
+            $q = $pdo->prepare($sql);
+            $q->execute();
+            $mbti_entries = $q->fetchColumn();
+
+            if($mbti_entries > 0)
+            {
+                header('Refresh: 0; URL = details_mbti.php?id='.$matricula);
+            } 
         }
 
     }

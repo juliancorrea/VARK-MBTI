@@ -114,7 +114,7 @@ define("ENFP_sd","Deben fijar prioridades y dar seguimiento completo a los asunt
 define("ENTJ_pp","Pueden ignorar las necesidades de la gente al enfocar la tarea.<br>Pueden ignorar las consideraciones y limitantes prácticas.<br>Pueden decidir demasiado rápidamente y aparecer impacientes y prepotentes.<br>Pueden ignorar y reprimir sus propios sentimientos.");
 define("ENTJ_sd","Deben esforzarse por incluir el elemento humano y apreciar las contribuciones de otros.<br>Deben chequear los recurso prácticos, personales y situaciones disponibles, antes de seguir adelante.");
 
-define("ENTP_pp","Pueden 'perderse' en el model, olvidando las realidades presentes.<br>Pueden ser competitivos y no apreciar la contribución de otros.<br>Pueden sobre-extenderse.<br>Pueden no adaptarse bien a los procedimientos establecidos.");
+define("ENTP_pp","Pueden 'perderse' en el modelo, olvidando las realidades presentes.<br>Pueden ser competitivos y no apreciar la contribución de otros.<br>Pueden sobre-extenderse.<br>Pueden no adaptarse bien a los procedimientos establecidos.");
 define("ENTP_sd","Deben prestar atención a la realidad presente.<br>Deben esforzarse por reconocer y validar la contribución de otros.");
 
 $p_potenciales = "";

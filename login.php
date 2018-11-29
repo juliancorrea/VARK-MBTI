@@ -41,7 +41,6 @@
                     if($bd_user["expediente"] == $form_expediente)
                     {
                         $grant_access = true;
-                        echo "hola";
                         break;
                     }
                 }
@@ -55,7 +54,7 @@
                     <!DOCTYPE html>
                     <html>
                     <script type="text/javascript">
-                        window.location = "dashboard.php";
+                        window.location = "dashboard_maestro.php";
                     </script>
                     </html>
                     <?php
