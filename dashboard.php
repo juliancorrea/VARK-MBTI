@@ -423,7 +423,7 @@
         <a class="btn btn-primary ml-3"href="reporte_sugerencias_excel.php">Descargar Excel</a>';
             }
                 echo '</div>';
-                echo '<div id="globales" class="container tab-pane active"><br>';
+                echo '<div id="globales" class="container tab-pane fade"><br>';
                 echo '<div class="col-md-12">
                 <div class="card mt-3">
                     <div class="card-header">
