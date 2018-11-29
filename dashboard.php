@@ -492,7 +492,8 @@
             }
         },
         "pageLength": 10,
-        "bLengthChange": false
+        "bLengthChange": false,
+        "scrollX": true
     });
 
     $('#mbti_dt').DataTable({
@@ -511,7 +512,8 @@
             }
         },
         "pageLength": 10,
-        "bLengthChange": false
+        "bLengthChange": false,
+        "scrollX": true
     });
 
     $('#sug_dt').DataTable({
@@ -530,7 +532,8 @@
             }
         },
         "pageLength": 10,
-        "bLengthChange": false
+        "bLengthChange": false,
+        "scrollX": true
     });
   });
 </script>
