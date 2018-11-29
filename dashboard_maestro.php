@@ -125,32 +125,70 @@
     Database::disconnect();
 
     //Data points VARK
-    $dataPoints_VARK = array( 
-        array("label"=>"Visual", "y" => $total_vark_visual/$total_vark_rows*100),
-        array("label"=>"Auditivo", "y"=> $total_vark_auditivo/$total_vark_rows*100),
-        array("label"=>"Lectura/escritura", "y"=> $total_vark_lectura/$total_vark_rows*100),
-        array("label"=>"Quinestésico", "y"=> $total_vark_quin/$total_vark_rows*100)
-    );
+    if($total_vark_rows < 1)
+    {
+        $dataPoints_VARK = array( 
+            array("label"=>"Visual", "y" => 0),
+            array("label"=>"Auditivo", "y"=> 0),
+            array("label"=>"Lectura/escritura", "y"=> 0),
+            array("label"=>"Quinestésico", "y"=> 0)
+        );
+    }
+    else
+    {
+        $dataPoints_VARK = array( 
+            array("label"=>"Visual", "y" => $total_vark_visual/$total_vark_rows*100),
+            array("label"=>"Auditivo", "y"=> $total_vark_auditivo/$total_vark_rows*100),
+            array("label"=>"Lectura/escritura", "y"=> $total_vark_lectura/$total_vark_rows*100),
+            array("label"=>"Quinestésico", "y"=> $total_vark_quin/$total_vark_rows*100)
+        );
+    }
+    
 
     //Data points MBTI
-    $dataPoints_MBTI = array( 
-        array("label"=>"ISFJ", "y" => $total_mbti_isfj/$total_mbti_rows*100),
-        array("label"=>"ISFP", "y" => $total_mbti_isfp/$total_mbti_rows*100),
-        array("label"=>"ISTJ", "y" => $total_mbti_istj/$total_mbti_rows*100),
-        array("label"=>"ISTP", "y" => $total_mbti_istp/$total_mbti_rows*100),
-        array("label"=>"INFJ", "y" => $total_mbti_infj/$total_mbti_rows*100),
-        array("label"=>"INFP", "y" => $total_mbti_infp/$total_mbti_rows*100),
-        array("label"=>"INTJ", "y" => $total_mbti_intj/$total_mbti_rows*100),
-        array("label"=>"INTP", "y" => $total_mbti_intp/$total_mbti_rows*100),
-        array("label"=>"ESFJ", "y" => $total_mbti_esfj/$total_mbti_rows*100),
-        array("label"=>"ESFP", "y" => $total_mbti_esfp/$total_mbti_rows*100),
-        array("label"=>"ESTJ", "y" => $total_mbti_estj/$total_mbti_rows*100),
-        array("label"=>"ESTP", "y" => $total_mbti_estp/$total_mbti_rows*100),
-        array("label"=>"ENFJ", "y" => $total_mbti_enfj/$total_mbti_rows*100),
-        array("label"=>"ENFP", "y" => $total_mbti_enfp/$total_mbti_rows*100),
-        array("label"=>"ENTJ", "y" => $total_mbti_entj/$total_mbti_rows*100),
-        array("label"=>"ENTP", "y" => $total_mbti_entp/$total_mbti_rows*100),
-    );
+
+    if($total_mbti_rows < 1)
+    {
+        $dataPoints_MBTI = array( 
+            array("label"=>"ISFJ", "y" => 0),
+            array("label"=>"ISFP", "y" => 0),
+            array("label"=>"ISTJ", "y" => 0),
+            array("label"=>"ISTP", "y" => 0),
+            array("label"=>"INFJ", "y" => 0),
+            array("label"=>"INFP", "y" => 0),
+            array("label"=>"INTJ", "y" => 0),
+            array("label"=>"INTP", "y" => 0),
+            array("label"=>"ESFJ", "y" => 0),
+            array("label"=>"ESFP", "y" => 0),
+            array("label"=>"ESTJ", "y" => 0),
+            array("label"=>"ESTP", "y" => 0),
+            array("label"=>"ENFJ", "y" => 0),
+            array("label"=>"ENFP", "y" => 0),
+            array("label"=>"ENTJ", "y" => 0),
+            array("label"=>"ENTP", "y" => 0)
+        );
+    }
+    else
+    {
+        $dataPoints_MBTI = array( 
+            array("label"=>"ISFJ", "y" => $total_mbti_isfj/$total_mbti_rows*100),
+            array("label"=>"ISFP", "y" => $total_mbti_isfp/$total_mbti_rows*100),
+            array("label"=>"ISTJ", "y" => $total_mbti_istj/$total_mbti_rows*100),
+            array("label"=>"ISTP", "y" => $total_mbti_istp/$total_mbti_rows*100),
+            array("label"=>"INFJ", "y" => $total_mbti_infj/$total_mbti_rows*100),
+            array("label"=>"INFP", "y" => $total_mbti_infp/$total_mbti_rows*100),
+            array("label"=>"INTJ", "y" => $total_mbti_intj/$total_mbti_rows*100),
+            array("label"=>"INTP", "y" => $total_mbti_intp/$total_mbti_rows*100),
+            array("label"=>"ESFJ", "y" => $total_mbti_esfj/$total_mbti_rows*100),
+            array("label"=>"ESFP", "y" => $total_mbti_esfp/$total_mbti_rows*100),
+            array("label"=>"ESTJ", "y" => $total_mbti_estj/$total_mbti_rows*100),
+            array("label"=>"ESTP", "y" => $total_mbti_estp/$total_mbti_rows*100),
+            array("label"=>"ENFJ", "y" => $total_mbti_enfj/$total_mbti_rows*100),
+            array("label"=>"ENFP", "y" => $total_mbti_enfp/$total_mbti_rows*100),
+            array("label"=>"ENTJ", "y" => $total_mbti_entj/$total_mbti_rows*100),
+            array("label"=>"ENTP", "y" => $total_mbti_entp/$total_mbti_rows*100)
+        );
+    }
 
 ?>
 
