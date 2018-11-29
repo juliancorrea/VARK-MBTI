@@ -52,7 +52,7 @@
                                     echo '<li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>';
                                 }
                             ?>
-                        
+
                         </ul>
             </div>
         </div>
@@ -110,6 +110,9 @@
                                     veces los alumnos no saben cómo podrían aprender más rápido y mejor, y tratan
                                     de hacerlo en formas que pueden parecer complicadas para sus habilidades, en
                                     las que por consecuencia, fallan y generan que se rindan fácilmente.</p>
+                                    <center>
+                                    <iframe width="720" height="480" src="https://www.youtube.com/embed/_Gn1cTqKKcg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    </center>
                                 <h3 class="titulo">Puedes solucionarlo</h3>
                                 <p class="parrafo"> Con tan solo <strong>dos sencillos tests</strong> podrás saber cual
                                     es tu forma
