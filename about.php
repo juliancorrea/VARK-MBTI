@@ -21,18 +21,20 @@ session_start();
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
         <div class="container">
             <a class="navbar-brand" href="index.php"><img src="./img/fsblack.png" alt=""></a>
-            <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" 
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php">Inicio
-                            <span class="sr-only">(current)</span>
-                        </a>
+                        <a class="nav-link" href="index.php">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="test_launcher.php">Realizar Test</a>
+                        <a class="nav-link" href="tipos_test.php">Los Tests</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="test_launcher.php">Realizar Tests</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="contact.php">Contacto</a>
@@ -47,7 +49,7 @@ session_start();
                             }
                             else
                             {
-                                echo '<li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>';
+                                echo '<li class="nav-item acceder"><a class="nav-link" href="login.php">Login</a></li>';
                             }
                         ?>
                 </ul>

@@ -32,7 +32,12 @@ main
         .direccion
             font-weight: 100
             font-size: 16px
+    
     .contacto
+        .sugerencias
+            text-align: center
+            font-weight: 200
+            font-size: 20px
         .form_contacto
             margin: 20px auto
             padding: 20px
@@ -117,6 +122,7 @@ main
                         &:hover
                             text-decoration: none
                             color: #0056b3
+    
     .acerca-de
         margin: 150px 0 100px 0
         font-weight: 200
@@ -196,8 +202,8 @@ main
             margin-bottom: 20px
             .personalidad
                 width: 150px
-                height: 150px
                 margin: 10px
+                padding: 10px
                 display: flex
                 justify-content: center
                 flex-wrap: wrap
@@ -205,11 +211,22 @@ main
                 align-items: center
                 border: 1px solid #ccc
                 border-radius: 5px
+                text-align: center
                 &.primario
                     background-color: $primario
+                &.rojo
+                    background-color: #ff0000
+                &.gris
+                    background-color: #666
+                .primera_linea
+                    font-size: 18px
+                .parrafo
+                    font-size: 14px
+    
     .test
         .form-matricula
             margin: 10px auto
+            padding: 10px
             width: 90%
             border-radius: 5px
             box-shadow: 1px 1px 2px 2px #ccc
@@ -224,9 +241,16 @@ main
                 font-size: 16px
                 font-family: 'Open-Sans', 'Arial', sans-serif
                 color: #050517
-            .form
+            .form-signin
                 margin: 15px auto
                 padding: 0 15px
                 .btn
                     margin-bottom: 10px
-                
+
+    .instrucciones
+        margin-top: 100px    
+        padding: 5px 15px 
+
+    .confirmacion,
+    .resultado
+        margin-top: 100px

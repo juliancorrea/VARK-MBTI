@@ -101,6 +101,11 @@ header .rojo {
     text-shadow: 3px 3px #666;
     font-weight: 600;
     font-size: 35px; }
+header .guelcom {
+  margin: 120px 30px 10px 30px; }
+  header .guelcom .bienvenida {
+    font-weight: 300;
+    font-size: 24px; }
 
 main .content {
   margin: 30px 0; }
@@ -132,6 +137,10 @@ main .generales {
   main .generales .direccion {
     font-weight: 100;
     font-size: 16px; }
+main .contacto .sugerencias {
+  text-align: center;
+  font-weight: 200;
+  font-size: 20px; }
 main .contacto .form_contacto {
   margin: 20px auto;
   padding: 20px; }
@@ -289,19 +298,29 @@ main .tipos .cajas {
   margin-bottom: 20px; }
   main .tipos .cajas .personalidad {
     width: 150px;
-    height: 150px;
     margin: 10px;
+    padding: 10px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     flex-direction: row;
     align-items: center;
     border: 1px solid #ccc;
-    border-radius: 5px; }
+    border-radius: 5px;
+    text-align: center; }
     main .tipos .cajas .personalidad.primario {
       background-color: #aa0000; }
+    main .tipos .cajas .personalidad.rojo {
+      background-color: #ff0000; }
+    main .tipos .cajas .personalidad.gris {
+      background-color: #666; }
+    main .tipos .cajas .personalidad .primera_linea {
+      font-size: 18px; }
+    main .tipos .cajas .personalidad .parrafo {
+      font-size: 14px; }
 main .test .form-matricula {
   margin: 10px auto;
+  padding: 10px;
   width: 90%;
   border-radius: 5px;
   box-shadow: 1px 1px 2px 2px #ccc; }
@@ -316,11 +335,17 @@ main .test .form-matricula {
     font-size: 16px;
     font-family: "Open-Sans", "Arial", sans-serif;
     color: #050517; }
-  main .test .form-matricula .form {
+  main .test .form-matricula .form-signin {
     margin: 15px auto;
     padding: 0 15px; }
-    main .test .form-matricula .form .btn {
+    main .test .form-matricula .form-signin .btn {
       margin-bottom: 10px; }
+main .instrucciones {
+  margin-top: 100px;
+  padding: 5px 15px; }
+main .confirmacion,
+main .resultado {
+  margin-top: 100px; }
 
 footer .footer-content {
   background: #141516;
@@ -341,5 +366,20 @@ footer .footer-content {
     color: #fff; }
     footer .footer-content a:hover {
       text-decoration: none; }
+
+@media only screen and (min-width: 401px) and (max-width: 960px) {
+  body header .texto-slider .sistema {
+    font-size: 34px; }
+  body header .texto-slider h2 {
+    font-size: 25px; } }
+@media only screen and (min-width: 961px) {
+  body .navbar-custom {
+    background-color: #fff; }
+    body .navbar-custom .navbar-nav {
+      border-top: none; }
+      body .navbar-custom .navbar-nav .nav-item a {
+        color: #333; }
+      body .navbar-custom .navbar-nav .nav-item.acceder {
+        width: 10%; } }
 
 /*# sourceMappingURL=estilos.css.map */

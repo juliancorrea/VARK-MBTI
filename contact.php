@@ -39,18 +39,20 @@
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
         <div class="container">
             <a class="navbar-brand" href="index.php"><img src="./img/fsblack.png" alt=""></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav mr-auto w-100 justify-content-end">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php">Inicio
-                            <span class="sr-only">(current)</span>
-                        </a>
+                        <a class="nav-link" href="index.php">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="test_launcher.php">Realizar Test</a>
+                        <a class="nav-link" href="tipos_test.php">Los Tests</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="test_launcher.php">Realizar Tests</a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="contact.php">Contacto</a>
@@ -65,7 +67,7 @@
                             }
                             else
                             {
-                                echo '<li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>';
+                                echo '<li class="nav-item acceder"><a class="nav-link" href="login.php">Login</a></li>';
                             }
                         ?>
                     
@@ -109,9 +111,9 @@
             </div>
         </section>
 
-        <section class="contacto">
+         <section class="contacto">
             <div class="container">
-            <h1>¿Sugerencias? ¡Escríbenos!</h1>
+                    <h3 class="sugerencias">¿Sugerencias? ¡Escríbenos!</h3>
                 <div class="row">
                     <div class="col-md-6">
                         <form class="form_contacto" role="form" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); 

@@ -20,9 +20,8 @@
     <title>Ingrese al test - VARK y MBTI</title>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
+        <div class="container">
             <?php
             include 'database.php';
             $pdo = Database::connect();
@@ -63,25 +62,26 @@
                 }
             }
         ?>
-
-                <a class="navbar-brand" href="#">
-                    <a href="index.php"><img src="./img/logo.png" alt=""></a>
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse btns" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto w-100 justify-content-end">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.php">Inicio</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="test_launcher.php">Realizar Test</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contact.php">Contacto</a>
-                        </li>
-                        <li class="nav-item">
+        <a class="navbar-brand" href="index.php"><img src="./img/fsblack.png" alt=""></a>
+            <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav mr-auto w-100 justify-content-end">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tipos_test.php">Los Tests</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="test_launcher.php">Realizar Tests</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.php">Contacto</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="dashboard.php">Dashboard</a>
                     </li>
                         <?php
@@ -91,37 +91,44 @@
                             }
                             else
                             {
-                                echo '<li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>';
+                                echo '<li class="nav-item acceder"><a class="nav-link" href="login.php">Login</a></li>';
                             }
                         ?>
                     </ul>  
                 </div>
             </div>
         </nav>
+
+    <header>
+        <div class="rojo">
+            <div class="container">
+                <h2 class="primer">Realizar test</h2>
+            </div>
+        </div>
     </header>
 
     <main>
-		<div class="container mt-3">
-  			<h2>Realizar test</h2><br/>
-  			<!-- Tab panes -->
-  			<div class="tab-content">
-    			<div id="alumnos" class="container tab-pane active"><br>
-      				<h3>Alumnos</h3>
-      				<p>Ingrese su número de matrícula para realizar alguno de nuestros tests.</p>
-                      <form class="form-signin" role="form" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); 
-                    ?>"
-                    method="post">
-                    <p class="form-signin-heading" style="color: red">
-                        <?php echo $msg; ?>
-                    </p>
-                    <input type="text" class="form-control" name="matricula" placeholder="Matrícula" required
-                        autofocus></br>
-                    <button class="btn btn-lg btn-primary btn-block mb-3" type="submit" name="login">Ingresar</button>
-                </form>
-
-				</div>
-  			</div>
-		</div>
+        <section class="test">
+            <div class="form-matricula container mt-3">
+                  <!-- Tab panes -->
+                <div class="tab-content">
+                    <div id="alumnos" class="container tab-pane active"><br>
+                        <h3 class="titulo">Alumno:</h3>
+                        <p class="parrafo">Ingresa tu número de matrícula para realizar alguno de nuestros tests.</p>
+                        <form class="form-signin" role="form" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); 
+                        ?>"
+                        method="post">
+                            <p class="form-signin-heading" style="color: red">
+                                <?php echo $msg; ?>
+                            </p>
+                            <input type="text" class="form-control" name="matricula" placeholder="Matrícula" required
+                                autofocus></br>
+                            <button class="btn btn-lg btn-outline-primary btn-block mb-3" type="submit" name="login">Ingresar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>

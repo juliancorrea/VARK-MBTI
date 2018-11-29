@@ -21,7 +21,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
         <div class="container">
             <a class="navbar-brand" href="index.php"><img src="./img/fsblack.png" alt=""></a>
             <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
@@ -29,19 +29,22 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav mr-auto w-100 justify-content-end">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="index.php">Inicio</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="test_launcher.php">Realizar Test</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="contact.php">Contacto</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="dashboard.php">Dashboard</a>
-                            </li>
+                <ul class="navbar-nav mr-auto w-100 justify-content-end">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index.php">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tipos_test.php">Los Tests</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="test_launcher.php">Realizar Tests</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.php">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.php">Dashboard</a>
+                    </li>
                             <?php
                                 if(isset($_SESSION["expediente"]) || isset($_SESSION["admin"]))
                                 {
@@ -49,7 +52,7 @@
                                 }
                                 else
                                 {
-                                    echo '<li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>';
+                                    echo '<li class="nav-item acceder"><a class="nav-link" href="login.php">Login</a></li>';
                                 }
                             ?>
 
@@ -111,7 +114,7 @@
                                     de hacerlo en formas que pueden parecer complicadas para sus habilidades, en
                                     las que por consecuencia, fallan y generan que se rindan fácilmente.</p>
                                     <center>
-                                    <iframe width="720" height="480" src="https://www.youtube.com/embed/_Gn1cTqKKcg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    <iframe width="100%" height="480" src="https://www.youtube.com/embed/_Gn1cTqKKcg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                     </center>
                                 <h3 class="titulo">Puedes solucionarlo</h3>
                                 <p class="parrafo"> Con tan solo <strong>dos sencillos tests</strong> podrás saber cual
