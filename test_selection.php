@@ -17,7 +17,7 @@
     {
         if($_POST['tests'][0] == "Test de Aprendizaje VARK")
         {
-            $sql = "SELECT count(*) FROM resultado_vark";
+            $sql = "SELECT count(*) FROM resultado_vark WHERE Matricula = '$matricula'";
             $q = $pdo->prepare($sql);
             $q->execute();
             $vark_entries = $q->fetchColumn();
@@ -25,12 +25,16 @@
             if($vark_entries > 0)
             {
                 header('Refresh: 0; URL = details_vark.php?id='.$matricula);
-            } 
+            }
+            else 
+            {
+                header('Refresh: 0; URL = vark.php');
+            }
         }
         else
         if($_POST['tests'][0] == "Test de Personalidad MBTI")
         {
-            $sql = "SELECT count(*) FROM resultado_mbti";
+            $sql = "SELECT count(*) FROM resultado_mbti WHERE Matricula = '$matricula'";
             $q = $pdo->prepare($sql);
             $q->execute();
             $mbti_entries = $q->fetchColumn();
@@ -38,6 +42,10 @@
             if($mbti_entries > 0)
             {
                 header('Refresh: 0; URL = details_mbti.php?id='.$matricula);
+            }
+            else 
+            {
+                header('Refresh: 0; URL = mbti.php');
             } 
         }
 
