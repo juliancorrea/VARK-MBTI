@@ -354,7 +354,6 @@ switch($resultado)
         break;
 
 }
-unset($_SESSION["matricula"]);
 
 ?>
 
