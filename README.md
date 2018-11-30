@@ -6,7 +6,7 @@ Applies VARK/MBTI tests to students to show which learning strategies are best f
 Admins and teachers can see general results graphically and get Excel and PDF reports.
 
 ## You should know...
-This is an **extremely** rushed school project, has a **TON** of W.E.T., D.R.Y., nasty hard-coded stuff, and it may not be expanded upon.
+This is an **extremely** rushed school project, has a **TON** of W.E.T., D.R.Y., nasty hard-coded stuff, and it may not be updated in the future at all.
 
 Works well for the most part though, so don't be scared to give it a try.
 
