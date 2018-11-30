@@ -2,7 +2,7 @@
 Web application.
 
 ## What does it do?
-Applies VARK/MBTI tests to students for them to see which learning strategies are best, along with their personality traits.
+Applies VARK/MBTI tests to students for them to see which learning strategies are best for them, along with their personality traits.
 Admins and teachers can see general results graphically and get Excel and PDF reports.
 
 ## You should know...
