@@ -7,6 +7,7 @@ Admins and teachers can see general results graphically and get Excel and PDF re
 
 ## You should know...
 This is an **extremely** rushed school project, has a **TON** of W.E.T., D.R.Y., nasty hard-coded stuff, and it may not be updated in the future at all.
+Oh, and you could probably tell by the commits but the whole thing is in Spanish.
 
 Works well for the most part though, so don't be scared to give it a try.
 
